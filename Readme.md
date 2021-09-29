@@ -1,7 +1,7 @@
 # Личный проект «Что посмотреть»
 
 * Студент: [Inna Makhova](https://up.htmlacademy.ru/react/8/user/1174641).
-* Наставник: `Неизвестно`.
+* Наставник: [Артур Галимов](https://htmlacademy.ru/profile/id1237543).
 
 ---
 
