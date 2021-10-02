@@ -1,15 +1,15 @@
 type FilmCardProps = {
-  name: 'Fantastic Beasts: The Crimes of Grindelwald';
-  src: 'img/fantastic-beasts-the-crimes-of-grindelwald.jpg';
+  title: string;
+  src: string;
 }
-function FilmCard({name, src} : FilmCardProps) : JSX.Element {
+function FilmCard({title, src} : FilmCardProps) : JSX.Element {
   return (
     <article className="small-film-card catalog__films-card">
       <div className="small-film-card__image">
-        <img src={src} alt={name} width="280" height="175"/>
+        <img src={src} alt={title} width="280" height="175"/>
       </div>
       <h3 className="small-film-card__title">
-        <a className="small-film-card__link" href="film-page.html">{name}</a>
+        <a className="small-film-card__link" href="film-page.html">{title}</a>
       </h3>
     </article>
   );

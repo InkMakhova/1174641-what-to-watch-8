@@ -1,8 +1,18 @@
 import WelcomeScreen from '../welcome-screen/welcome-screen';
 
-function App(): JSX.Element {
+type AppScreenProps = {
+  title: string;
+  genre: string;
+  year: number;
+}
+
+function App({title, genre, year} : AppScreenProps): JSX.Element {
   return (
-    <WelcomeScreen />
+    <WelcomeScreen
+      title = {title}
+      genre = {genre}
+      year = {year}
+    />
   );
 }
 

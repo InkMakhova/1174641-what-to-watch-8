@@ -1,6 +1,12 @@
 import FilmCard from '../film-card/film-card';
 
-function WelcomeScreen() : JSX.Element {
+type FilmProps = {
+  title: string;
+  genre: string;
+  year: number;
+}
+
+function WelcomeScreen({title, genre, year} : FilmProps) : JSX.Element {
   return (
     <>
       <section className="film-card">
@@ -38,10 +44,10 @@ function WelcomeScreen() : JSX.Element {
             </div>
 
             <div className="film-card__desc">
-              <h2 className="film-card__title">The Grand Budapest Hotel</h2>
+              <h2 className="film-card__title">{title}</h2>
               <p className="film-card__meta">
-                <span className="film-card__genre">Drama</span>
-                <span className="film-card__year">2014</span>
+                <span className="film-card__genre">{genre}</span>
+                <span className="film-card__year">{year}</span>
               </p>
 
               <div className="film-card__buttons">
@@ -101,83 +107,83 @@ function WelcomeScreen() : JSX.Element {
 
           <div className="catalog__films-list">
             <FilmCard
-              name = {'Fantastic Beasts: The Crimes of Grindelwald'}
+              title= {'Fantastic Beasts: The Crimes of Grindelwald'}
               src = {'img/fantastic-beasts-the-crimes-of-grindelwald.jpg'}
             />
             <FilmCard
-              name = {'Fantastic Beasts: The Crimes of Grindelwald'}
+              title= {'Fantastic Beasts: The Crimes of Grindelwald'}
               src = {'img/fantastic-beasts-the-crimes-of-grindelwald.jpg'}
             />
             <FilmCard
-              name = {'Fantastic Beasts: The Crimes of Grindelwald'}
+              title= {'Fantastic Beasts: The Crimes of Grindelwald'}
               src = {'img/fantastic-beasts-the-crimes-of-grindelwald.jpg'}
             />
             <FilmCard
-              name = {'Fantastic Beasts: The Crimes of Grindelwald'}
+              title= {'Fantastic Beasts: The Crimes of Grindelwald'}
               src = {'img/fantastic-beasts-the-crimes-of-grindelwald.jpg'}
             />
             <FilmCard
-              name = {'Fantastic Beasts: The Crimes of Grindelwald'}
+              title= {'Fantastic Beasts: The Crimes of Grindelwald'}
               src = {'img/fantastic-beasts-the-crimes-of-grindelwald.jpg'}
             />
             <FilmCard
-              name = {'Fantastic Beasts: The Crimes of Grindelwald'}
+              title= {'Fantastic Beasts: The Crimes of Grindelwald'}
               src = {'img/fantastic-beasts-the-crimes-of-grindelwald.jpg'}
             />
             <FilmCard
-              name = {'Fantastic Beasts: The Crimes of Grindelwald'}
+              title= {'Fantastic Beasts: The Crimes of Grindelwald'}
               src = {'img/fantastic-beasts-the-crimes-of-grindelwald.jpg'}
             />
             <FilmCard
-              name = {'Fantastic Beasts: The Crimes of Grindelwald'}
+              title= {'Fantastic Beasts: The Crimes of Grindelwald'}
               src = {'img/fantastic-beasts-the-crimes-of-grindelwald.jpg'}
             />
             <FilmCard
-              name = {'Fantastic Beasts: The Crimes of Grindelwald'}
+              title= {'Fantastic Beasts: The Crimes of Grindelwald'}
               src = {'img/fantastic-beasts-the-crimes-of-grindelwald.jpg'}
             />
             <FilmCard
-              name = {'Fantastic Beasts: The Crimes of Grindelwald'}
+              title= {'Fantastic Beasts: The Crimes of Grindelwald'}
               src = {'img/fantastic-beasts-the-crimes-of-grindelwald.jpg'}
             />
             <FilmCard
-              name = {'Fantastic Beasts: The Crimes of Grindelwald'}
+              title= {'Fantastic Beasts: The Crimes of Grindelwald'}
               src = {'img/fantastic-beasts-the-crimes-of-grindelwald.jpg'}
             />
             <FilmCard
-              name = {'Fantastic Beasts: The Crimes of Grindelwald'}
+              title= {'Fantastic Beasts: The Crimes of Grindelwald'}
               src = {'img/fantastic-beasts-the-crimes-of-grindelwald.jpg'}
             />
             <FilmCard
-              name = {'Fantastic Beasts: The Crimes of Grindelwald'}
+              title= {'Fantastic Beasts: The Crimes of Grindelwald'}
               src = {'img/fantastic-beasts-the-crimes-of-grindelwald.jpg'}
             />
             <FilmCard
-              name = {'Fantastic Beasts: The Crimes of Grindelwald'}
+              title= {'Fantastic Beasts: The Crimes of Grindelwald'}
               src = {'img/fantastic-beasts-the-crimes-of-grindelwald.jpg'}
             />
             <FilmCard
-              name = {'Fantastic Beasts: The Crimes of Grindelwald'}
+              title= {'Fantastic Beasts: The Crimes of Grindelwald'}
               src = {'img/fantastic-beasts-the-crimes-of-grindelwald.jpg'}
             />
             <FilmCard
-              name = {'Fantastic Beasts: The Crimes of Grindelwald'}
+              title= {'Fantastic Beasts: The Crimes of Grindelwald'}
               src = {'img/fantastic-beasts-the-crimes-of-grindelwald.jpg'}
             />
             <FilmCard
-              name = {'Fantastic Beasts: The Crimes of Grindelwald'}
+              title= {'Fantastic Beasts: The Crimes of Grindelwald'}
               src = {'img/fantastic-beasts-the-crimes-of-grindelwald.jpg'}
             />
             <FilmCard
-              name = {'Fantastic Beasts: The Crimes of Grindelwald'}
+              title= {'Fantastic Beasts: The Crimes of Grindelwald'}
               src = {'img/fantastic-beasts-the-crimes-of-grindelwald.jpg'}
             />
             <FilmCard
-              name = {'Fantastic Beasts: The Crimes of Grindelwald'}
+              title= {'Fantastic Beasts: The Crimes of Grindelwald'}
               src = {'img/fantastic-beasts-the-crimes-of-grindelwald.jpg'}
             />
             <FilmCard
-              name = {'Fantastic Beasts: The Crimes of Grindelwald'}
+              title= {'Fantastic Beasts: The Crimes of Grindelwald'}
               src = {'img/fantastic-beasts-the-crimes-of-grindelwald.jpg'}
             />
           </div>
