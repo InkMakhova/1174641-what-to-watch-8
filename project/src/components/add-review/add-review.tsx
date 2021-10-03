@@ -5,6 +5,9 @@ type AddReviewProps = {
 }
 
 function AddReview({title = 'The Grand Budapest Hotel', image = 'img/bg-the-grand-budapest-hotel.jpg', page = 'film-page.html'} : AddReviewProps) : JSX.Element {
+  const titlePoster = `${title} poster`;
+  const imagePoster = `${image}-poster`;
+
   return (
     <section className="film-card film-card--full">
       <div className="film-card__header">
@@ -47,8 +50,7 @@ function AddReview({title = 'The Grand Budapest Hotel', image = 'img/bg-the-gran
         </header>
 
         <div className="film-card__poster film-card__poster--small">
-          <img src={image + `-poster`} alt={title + ` poster`} width="218"
-               height="327"/>
+          <img src={imagePoster} alt={titlePoster} width="218" height="327"/>
         </div>
       </div>
 
@@ -90,7 +92,9 @@ function AddReview({title = 'The Grand Budapest Hotel', image = 'img/bg-the-gran
 
           <div className="add-review__text">
             <textarea className="add-review__textarea" name="review-text" id="review-text"
-                      placeholder="Review text"></textarea>
+              placeholder="Review text"
+            >
+            </textarea>
             <div className="add-review__submit">
               <button className="add-review__btn" type="submit">Post</button>
             </div>
