@@ -64,7 +64,8 @@ function MoviePageReviews() : JSX.Element {
           <div className="film-card__info">
             <div className="film-card__poster film-card__poster--big">
               <img src="img/the-grand-budapest-hotel-poster.jpg" alt="The Grand Budapest Hotel poster" width="218"
-                   height="327"/>
+                height="327"
+              />
             </div>
 
             <div className="film-card__desc">
@@ -87,8 +88,9 @@ function MoviePageReviews() : JSX.Element {
                   <div className="review">
                     <blockquote className="review__quote">
                       <p className="review__text">Discerning travellers and Wes Anderson fans will luxuriate in the
-                        glorious Mittel-European kitsch of one of the director's funniest and most exquisitely designed
-                        films in years.</p>
+                        glorious Mittel-European kitsch of one of the director&apos;s funniest and most exquisitely designed
+                        films in years.
+                      </p>
 
                       <footer className="review__details">
                         <cite className="review__author">Kate Muir</cite>
@@ -101,9 +103,10 @@ function MoviePageReviews() : JSX.Element {
 
                   <div className="review">
                     <blockquote className="review__quote">
-                      <p className="review__text">Anderson's films are too precious for some, but for those of us
-                        willing to lose ourselves in them, they're a delight. "The Grand Budapest Hotel" is no
-                        different, except that he has added a hint of gravitas to the mix, improving the recipe.</p>
+                      <p className="review__text">Anderson&apos;s films are too precious for some, but for those of us
+                        willing to lose ourselves in them, they&apos;re a delight. &quot;The Grand Budapest Hotel&quot; is no
+                        different, except that he has added a hint of gravitas to the mix, improving the recipe.
+                      </p>
 
                       <footer className="review__details">
                         <cite className="review__author">Bill Goodykoontz</cite>
@@ -116,8 +119,9 @@ function MoviePageReviews() : JSX.Element {
 
                   <div className="review">
                     <blockquote className="review__quote">
-                      <p className="review__text">I didn't find it amusing, and while I can appreciate the creativity,
-                        it's an hour and 40 minutes I wish I could take back.</p>
+                      <p className="review__text">I didn&apos;t find it amusing, and while I can appreciate the creativity,
+                        it&apos;s an hour and 40 minutes I wish I could take back.
+                      </p>
 
                       <footer className="review__details">
                         <cite className="review__author">Amanda Greever</cite>
@@ -132,7 +136,8 @@ function MoviePageReviews() : JSX.Element {
                   <div className="review">
                     <blockquote className="review__quote">
                       <p className="review__text">The mannered, madcap proceedings are often delightful, occasionally
-                        silly, and here and there, gruesome and/or heartbreaking.</p>
+                        silly, and here and there, gruesome and/or heartbreaking.
+                      </p>
 
                       <footer className="review__details">
                         <cite className="review__author">Matthew Lickona</cite>
@@ -146,7 +151,8 @@ function MoviePageReviews() : JSX.Element {
                   <div className="review">
                     <blockquote className="review__quote">
                       <p className="review__text">It is certainly a magical and childlike way of storytelling, even if
-                        the content is a little more adult.</p>
+                        the content is a little more adult.
+                      </p>
 
                       <footer className="review__details">
                         <cite className="review__author">Paula Fleri-Soler</cite>
@@ -160,7 +166,8 @@ function MoviePageReviews() : JSX.Element {
                   <div className="review">
                     <blockquote className="review__quote">
                       <p className="review__text">It is certainly a magical and childlike way of storytelling, even if
-                        the content is a little more adult.</p>
+                        the content is a little more adult.
+                      </p>
 
                       <footer className="review__details">
                         <cite className="review__author">Paula Fleri-Soler</cite>
