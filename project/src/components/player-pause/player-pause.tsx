@@ -1,4 +1,4 @@
-function Player() : JSX.Element {
+function PlayerPause() : JSX.Element {
   return (
     <div className="player">
       <video src="#" className="player__video" poster="img/player-poster.jpg"></video>
@@ -16,10 +16,10 @@ function Player() : JSX.Element {
 
         <div className="player__controls-row">
           <button type="button" className="player__play">
-            <svg viewBox="0 0 19 19" width="19" height="19">
-              <use xlinkHref="#play-s"></use>
+            <svg viewBox="0 0 14 21" width="14" height="21">
+              <use xlinkHref="#pause"></use>
             </svg>
-            <span>Play</span>
+            <span>Pause</span>
           </button>
           <div className="player__name">Transpotting</div>
 
@@ -35,4 +35,4 @@ function Player() : JSX.Element {
   );
 }
 
-export default Player;
+export default PlayerPause;
