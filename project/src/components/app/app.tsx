@@ -4,27 +4,31 @@ import WelcomeScreen from '../welcome-screen/welcome-screen';
 import SignIn from '../sign-in/sign-in';
 import MyList from '../my-list/my-list';
 import MoviePage from '../movie-page/movie-page';
-// import AddReview from '../add-review/add-review';
+import AddReview from '../add-review/add-review';
 import Player from '../player/player';
 import Page404 from '../page-404/page-404';
 import PrivateRoute from '../private-route/private-route';
-import AddReview from '../add-review/add-review';
+import {Film} from '../../types/film';
 
 type AppScreenProps = {
-  title: string;
-  genre: string;
-  year: number;
+  film: Film,
+  films: Film[],
+  filmsCount: number,
 }
 
-function App({title, genre, year} : AppScreenProps): JSX.Element {
+function App({film, films, filmsCount} : AppScreenProps): JSX.Element {
   return (
     <BrowserRouter>
       <Switch>
         <Route exact path={AppRoute.Root}>
           <WelcomeScreen
-            title = {title}
-            genre = {genre}
-            year = {year}
+            name= {film.name}
+            genre = {film.genre}
+            released= {film.released}
+            posterImage={film.posterImage}
+            backgroundImage={film.backgroundImage}
+            films={films}
+            filmsCount={filmsCount}
           />
         </Route>
         <Route exact path={AppRoute.Login}>
