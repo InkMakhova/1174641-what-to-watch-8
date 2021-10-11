@@ -29,40 +29,40 @@ function MyList() : JSX.Element {
 
         <div className="catalog__films-list">
           <FilmCard
-            title = {'Fantastic Beasts: The Crimes of Grindelwald'}
-            image = {'img/fantastic-beasts-the-crimes-of-grindelwald.jpg'}
+            name= {'Fantastic Beasts: The Crimes of Grindelwald'}
+            previewImage= {'img/fantastic-beasts-the-crimes-of-grindelwald.jpg'}
           />
           <FilmCard
-            title = {'Bohemian Rhapsody'}
-            image = {'img/bohemian-rhapsody.jpg'}
+            name= {'Bohemian Rhapsody'}
+            previewImage= {'img/bohemian-rhapsody.jpg'}
           />
           <FilmCard
-            title = {'Macbeth'}
-            image = {'img/macbeth.jpg'}
+            name= {'Macbeth'}
+            previewImage= {'img/macbeth.jpg'}
           />
           <FilmCard
-            title = {'Aviator'}
-            image = {'img/aviator.jpg'}
+            name= {'Aviator'}
+            previewImage= {'img/aviator.jpg'}
           />
           <FilmCard
-            title = {'We need to talk about Kevin'}
-            image = {'img/we-need-to-talk-about-kevin.jpg'}
+            name= {'We need to talk about Kevin'}
+            previewImage= {'img/we-need-to-talk-about-kevin.jpg'}
           />
           <FilmCard
-            title = {'What We Do in the Shadows'}
-            image = {'img/what-we-do-in-the-shadows.jpg'}
+            name= {'What We Do in the Shadows'}
+            previewImage= {'img/what-we-do-in-the-shadows.jpg'}
           />
           <FilmCard
-            title = {'Revenant'}
-            image = {'img/revenant.jpg'}
+            name= {'Revenant'}
+            previewImage= {'img/revenant.jpg'}
           />
           <FilmCard
-            title = {'Johnny English'}
-            image = {'img/johnny-english.jpg'}
+            name= {'Johnny English'}
+            previewImage= {'img/johnny-english.jpg'}
           />
           <FilmCard
-            title = {'Shutter Island'}
-            image = {'img/shutter-island.jpg'}
+            name= {'Shutter Island'}
+            previewImage= {'img/shutter-island.jpg'}
           />
         </div>
       </section>

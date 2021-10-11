@@ -121,20 +121,20 @@ function MoviePageInList() : JSX.Element {
 
           <div className="catalog__films-list">
             <FilmCard
-              title = {'Fantastic Beasts: The Crimes of Grindelwald'}
-              image = {'img/fantastic-beasts-the-crimes-of-grindelwald.jpg'}
+              name= {'Fantastic Beasts: The Crimes of Grindelwald'}
+              previewImage= {'img/fantastic-beasts-the-crimes-of-grindelwald.jpg'}
             />
             <FilmCard
-              title = {'Bohemian Rhapsody'}
-              image = {'img/bohemian-rhapsody.jpg'}
+              name= {'Bohemian Rhapsody'}
+              previewImage= {'img/bohemian-rhapsody.jpg'}
             />
             <FilmCard
-              title = {'Macbeth'}
-              image = {'img/macbeth.jpg'}
+              name= {'Macbeth'}
+              previewImage= {'img/macbeth.jpg'}
             />
             <FilmCard
-              title = {'Aviator'}
-              image = {'img/aviator.jpg'}
+              name= {'Aviator'}
+              previewImage= {'img/aviator.jpg'}
             />
           </div>
         </section>
