@@ -11,7 +11,7 @@ export type Film = {
   rating: number,
   scoresCount: number,
   director: string,
-  starring: string[],
+  starring: string | string[],
   runTime: number,
   genre: string,
   released: number,

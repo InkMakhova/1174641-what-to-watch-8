@@ -3,31 +3,30 @@ import {Film} from '../types/film';
 export const films : Film[] = [
   {
     id: 0,
-    name: 'The Grand Budapest Hotel',
-    posterImage: 'img/the-grand-budapest-hotel-poster.jpg',
-    previewImage: 'img/the-grand-budapest-hotel.jpg',
-    backgroundImage: 'img/the-grand-budapest-hotel-bg.jpg',
-    backgroundColor: '#ffffff',
-    videoLink: 'https://some-link',
-    previewVideoLink: 'https://some-link',
+    name: 'We need to talk about Kevin',
+    posterImage: 'https://7.react.pages.academy/static/film/poster/We_need_to_talk_about_Kevin.jpg',
+    previewImage: 'https://7.react.pages.academy/static/film/preview/we-need-to-talk-about-kevin.jpg',
+    backgroundImage: 'https://7.react.pages.academy/static/film/background/We_need_to_talk_about_Kevin.jpg',
+    backgroundColor: '#E1DFDE',
+    videoLink: 'http://media.xiph.org/mango/tears_of_steel_1080p.webm',
+    previewVideoLink: 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
     description:
-      'In the 1930s, the Grand Budapest Hotel is a popular European ski resort, presided over by concierge Gustave H. (Ralph Fiennes).' +
-      'Zero, a junior lobby boy, becomes Gustave\'s friend and protege.',
-    rating: 8.9,
-    scoresCount: 240,
-    director: 'Wes Anderson',
-    starring: ['Bill Murray', 'Edward Norton', 'Jude Law', 'Willem Dafoe', 'Saoirse Ronan'],
-    runTime: 99,
-    genre: 'Comedy',
-    released: 2014,
+      'Kevin\'s mother struggles to love her strange child, despite the increasingly dangerous things he says and does as he grows up. But Kevin is just getting started, and his final act will be beyond anything anyone imagined.',
+    rating: 3.8,
+    scoresCount: 123240,
+    director: 'Lynne Ramsay',
+    starring: ['Tilda Swinton', 'John C. Reilly', 'Ezra Miller'],
+    runTime: 112,
+    genre: 'Drama',
+    released: 2011,
     isFavorite: false,
   },
   {
     id: 1,
     name: 'Orlando',
     posterImage: 'https://7.react.pages.academy/static/film/poster/Orlando.jpg',
-    previewImage: 'https://7.react.pages.ac…film/preview/orlando.jpg',
-    backgroundImage: 'https://7.react.pages.ac…m/background/Orlando.jpg',
+    previewImage: 'https://7.react.pages.academy/static/film/preview/orlando.jpg',
+    backgroundImage: 'https://7.react.pages.academy/static/film/background/Orlando.jpg',
     backgroundColor: '#D8D3BD',
     videoLink: 'http://peach.themazzone.com/durian/movies/sintel-1024-surround.mp4',
     previewVideoLink: 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
@@ -161,7 +160,7 @@ export const films : Film[] = [
     genre: 'Crime',
     released: 1994,
     isFavorite: false,
-  }
+  },
 ];
 
 export default films;
