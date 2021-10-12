@@ -1,5 +1,5 @@
 import Logo from '../logo/logo';
-import FilmCard from '../film-card/film-card';
+import FilmList from '../film-list/film-list';
 import Footer from '../footer/footer';
 import {Film} from '../../types/film';
 
@@ -14,8 +14,6 @@ type FilmProps = {
 }
 
 function WelcomeScreen({name, genre, released, posterImage, backgroundImage, films, filmsCount} : FilmProps) : JSX.Element {
-  const cards = films.length <= filmsCount ? films : films.slice(0, filmsCount-1);
-
   return (
     <>
       <section className="film-card">
@@ -110,19 +108,10 @@ function WelcomeScreen({name, genre, released, posterImage, backgroundImage, fil
             </li>
           </ul>
 
-          <div className="catalog__films-list">
-            {cards.map((card, id) => {
-              const keyValue = `${card.id}`;
-              return (
-                <FilmCard
-                  key = {keyValue}
-                  name = {card.name}
-                  previewImage = {card.previewImage}
-                />
-              );
-            })}
-
-          </div>
+          <FilmList
+            filmsCount={filmsCount}
+            films={films}
+          />
 
           <div className="catalog__more">
             <button className="catalog__button" type="button">Show more</button>

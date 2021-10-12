@@ -1,5 +1,6 @@
 import Logo from '../logo/logo';
-import FilmCard from '../film-card/film-card';
+import FilmList from '../film-list/film-list';
+import films from '../../mocks/films';
 import Footer from '../footer/footer';
 
 function MoviePageInList() : JSX.Element {
@@ -118,25 +119,10 @@ function MoviePageInList() : JSX.Element {
       <div className="page-content">
         <section className="catalog catalog--like-this">
           <h2 className="catalog__title">More like this</h2>
-
-          <div className="catalog__films-list">
-            <FilmCard
-              name= {'Fantastic Beasts: The Crimes of Grindelwald'}
-              previewImage= {'img/fantastic-beasts-the-crimes-of-grindelwald.jpg'}
-            />
-            <FilmCard
-              name= {'Bohemian Rhapsody'}
-              previewImage= {'img/bohemian-rhapsody.jpg'}
-            />
-            <FilmCard
-              name= {'Macbeth'}
-              previewImage= {'img/macbeth.jpg'}
-            />
-            <FilmCard
-              name= {'Aviator'}
-              previewImage= {'img/aviator.jpg'}
-            />
-          </div>
+          <FilmList
+            filmsCount={4}
+            films={films}
+          />
         </section>
 
         <Footer />

@@ -1,5 +1,6 @@
 import Logo from '../logo/logo';
-import FilmCard from '../film-card/film-card';
+import FilmList from '../film-list/film-list';
+import films from '../../mocks/films';
 import Footer from '../footer/footer';
 
 function MyList() : JSX.Element {
@@ -27,44 +28,10 @@ function MyList() : JSX.Element {
       <section className="catalog">
         <h2 className="catalog__title visually-hidden">Catalog</h2>
 
-        <div className="catalog__films-list">
-          <FilmCard
-            name= {'Fantastic Beasts: The Crimes of Grindelwald'}
-            previewImage= {'img/fantastic-beasts-the-crimes-of-grindelwald.jpg'}
-          />
-          <FilmCard
-            name= {'Bohemian Rhapsody'}
-            previewImage= {'img/bohemian-rhapsody.jpg'}
-          />
-          <FilmCard
-            name= {'Macbeth'}
-            previewImage= {'img/macbeth.jpg'}
-          />
-          <FilmCard
-            name= {'Aviator'}
-            previewImage= {'img/aviator.jpg'}
-          />
-          <FilmCard
-            name= {'We need to talk about Kevin'}
-            previewImage= {'img/we-need-to-talk-about-kevin.jpg'}
-          />
-          <FilmCard
-            name= {'What We Do in the Shadows'}
-            previewImage= {'img/what-we-do-in-the-shadows.jpg'}
-          />
-          <FilmCard
-            name= {'Revenant'}
-            previewImage= {'img/revenant.jpg'}
-          />
-          <FilmCard
-            name= {'Johnny English'}
-            previewImage= {'img/johnny-english.jpg'}
-          />
-          <FilmCard
-            name= {'Shutter Island'}
-            previewImage= {'img/shutter-island.jpg'}
-          />
-        </div>
+        <FilmList
+          filmsCount={9}
+          films={films}
+        />
       </section>
 
       <Footer/>
