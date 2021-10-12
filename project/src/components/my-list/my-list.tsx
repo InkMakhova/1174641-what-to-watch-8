@@ -1,9 +1,13 @@
 import Logo from '../logo/logo';
 import FilmList from '../film-list/film-list';
-import films from '../../mocks/films';
 import Footer from '../footer/footer';
+import {Film} from '../../types/film';
 
-function MyList() : JSX.Element {
+type MyListProps = {
+  myFilms: Film[];
+}
+
+function MyList({myFilms} : MyListProps) : JSX.Element {
   return (
     <div className="user-page">
       <header className="page-header user-page__head">
@@ -27,10 +31,9 @@ function MyList() : JSX.Element {
 
       <section className="catalog">
         <h2 className="catalog__title visually-hidden">Catalog</h2>
-
         <FilmList
           filmsCount={9}
-          films={films}
+          films={myFilms}
         />
       </section>
 
