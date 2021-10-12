@@ -1,18 +1,19 @@
 import React from 'react';
+import {Film} from '../../types/film';
 
 type FilmCardProps = {
-  filmId: string;
+  film: Film;
   name: string;
   previewImage: string;
-  mouseMoveHandler: (filmId : string) => void;
+  mouseEnterHandler: (film : Film) => void;
 }
 
-function FilmCard({filmId, name, previewImage, mouseMoveHandler} : FilmCardProps) : JSX.Element {
+function FilmCard({film, name, previewImage, mouseEnterHandler} : FilmCardProps) : JSX.Element {
   return (
     <article
       className="small-film-card catalog__films-card"
       onMouseEnter={() => {
-        mouseMoveHandler(filmId);
+        mouseEnterHandler(film);
       }}
     >
       <div className="small-film-card__image">

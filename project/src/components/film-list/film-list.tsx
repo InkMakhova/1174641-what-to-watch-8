@@ -10,23 +10,41 @@ type FilmListProps = {
 function FilmList({filmsCount, films} : FilmListProps) : JSX.Element {
   const cards = films.length <= filmsCount ? films : films.slice(0, filmsCount-1);
 
-  const [activeFilmId, setActiveFilmId] = useState('');
+  const [activeFilm, setActiveFilm] = useState({
+    id: '',
+    name: '',
+    posterImage: '',
+    previewImage: '',
+    backgroundImage: '',
+    backgroundColor: '',
+    videoLink: '',
+    previewVideoLink: '',
+    description: '',
+    rating: 0,
+    scoresCount: 0,
+    director: '',
+    starring: [''],
+    runTime: 0,
+    genre: '',
+    released: 0,
+    isFavorite: false,
+  });
 
-  function handleCardMouseMove(filmId : string) {
-    setActiveFilmId(filmId);
+  function handleCardMouseEnter(film : Film) {
+    setActiveFilm(film);
   }
 
   return (
-    <div className="catalog__films-list"  defaultValue={activeFilmId}>
+    <div className="catalog__films-list" defaultValue={activeFilm.id}>
       {cards.map((card, id) => {
         const keyValue = `${card.id}`;
         return (
           <FilmCard
             key = {keyValue}
-            filmId={keyValue}
+            film={card}
             name = {card.name}
             previewImage = {card.previewImage}
-            mouseMoveHandler={handleCardMouseMove}
+            mouseEnterHandler={handleCardMouseEnter}
           />
         );
       })}
