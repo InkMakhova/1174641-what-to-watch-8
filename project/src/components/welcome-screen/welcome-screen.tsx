@@ -1,19 +1,25 @@
+import {useHistory} from 'react-router-dom';
 import Logo from '../logo/logo';
-import FilmCard from '../film-card/film-card';
+import FilmList from '../film-list/film-list';
 import Footer from '../footer/footer';
+import {Film} from '../../types/film';
+import {AppRoute} from '../../const';
 
 type FilmProps = {
-  title: string;
-  genre: string;
-  year: number;
+  film: Film;
+  films: Film[];
+  filmsCount: number;
 }
 
-function WelcomeScreen({title, genre, year} : FilmProps) : JSX.Element {
+function WelcomeScreen({film, films, filmsCount} : FilmProps) : JSX.Element {
+  const {id, name, genre, released, posterImage, backgroundImage} = film;
+  const history = useHistory();
+
   return (
     <>
       <section className="film-card">
         <div className="film-card__bg">
-          <img src="img/bg-the-grand-budapest-hotel.jpg" alt="The Grand Budapest Hotel"/>
+          <img src={backgroundImage} alt={name}/>
         </div>
 
         <h1 className="visually-hidden">WTW</h1>
@@ -38,18 +44,22 @@ function WelcomeScreen({title, genre, year} : FilmProps) : JSX.Element {
         <div className="film-card__wrap">
           <div className="film-card__info">
             <div className="film-card__poster">
-              <img src="img/the-grand-budapest-hotel-poster.jpg" alt="The Grand Budapest Hotel poster" width="218" height="327"/>
+              <img src={posterImage} alt={`${name} poster`} width="218" height="327"/>
             </div>
 
             <div className="film-card__desc">
-              <h2 className="film-card__title">{title}</h2>
+              <h2 className="film-card__title">{name}</h2>
               <p className="film-card__meta">
                 <span className="film-card__genre">{genre}</span>
-                <span className="film-card__year">{year}</span>
+                <span className="film-card__year">{released}</span>
               </p>
 
               <div className="film-card__buttons">
-                <button className="btn btn--play film-card__button" type="button">
+                <button
+                  className="btn btn--play film-card__button"
+                  type="button"
+                  onClick={() => history.push(`${AppRoute.Player}${id}`)}
+                >
                   <svg viewBox="0 0 19 19" width="19" height="19">
                     <use xlinkHref="#play-s"></use>
                   </svg>
@@ -103,88 +113,10 @@ function WelcomeScreen({title, genre, year} : FilmProps) : JSX.Element {
             </li>
           </ul>
 
-          <div className="catalog__films-list">
-            <FilmCard
-              title= {'Fantastic Beasts: The Crimes of Grindelwald'}
-              image= {'img/fantastic-beasts-the-crimes-of-grindelwald.jpg'}
-            />
-            <FilmCard
-              title= {'Fantastic Beasts: The Crimes of Grindelwald'}
-              image= {'img/fantastic-beasts-the-crimes-of-grindelwald.jpg'}
-            />
-            <FilmCard
-              title= {'Fantastic Beasts: The Crimes of Grindelwald'}
-              image= {'img/fantastic-beasts-the-crimes-of-grindelwald.jpg'}
-            />
-            <FilmCard
-              title= {'Fantastic Beasts: The Crimes of Grindelwald'}
-              image= {'img/fantastic-beasts-the-crimes-of-grindelwald.jpg'}
-            />
-            <FilmCard
-              title= {'Fantastic Beasts: The Crimes of Grindelwald'}
-              image= {'img/fantastic-beasts-the-crimes-of-grindelwald.jpg'}
-            />
-            <FilmCard
-              title= {'Fantastic Beasts: The Crimes of Grindelwald'}
-              image= {'img/fantastic-beasts-the-crimes-of-grindelwald.jpg'}
-            />
-            <FilmCard
-              title= {'Fantastic Beasts: The Crimes of Grindelwald'}
-              image= {'img/fantastic-beasts-the-crimes-of-grindelwald.jpg'}
-            />
-            <FilmCard
-              title= {'Fantastic Beasts: The Crimes of Grindelwald'}
-              image= {'img/fantastic-beasts-the-crimes-of-grindelwald.jpg'}
-            />
-            <FilmCard
-              title= {'Fantastic Beasts: The Crimes of Grindelwald'}
-              image= {'img/fantastic-beasts-the-crimes-of-grindelwald.jpg'}
-            />
-            <FilmCard
-              title= {'Fantastic Beasts: The Crimes of Grindelwald'}
-              image= {'img/fantastic-beasts-the-crimes-of-grindelwald.jpg'}
-            />
-            <FilmCard
-              title= {'Fantastic Beasts: The Crimes of Grindelwald'}
-              image= {'img/fantastic-beasts-the-crimes-of-grindelwald.jpg'}
-            />
-            <FilmCard
-              title= {'Fantastic Beasts: The Crimes of Grindelwald'}
-              image= {'img/fantastic-beasts-the-crimes-of-grindelwald.jpg'}
-            />
-            <FilmCard
-              title= {'Fantastic Beasts: The Crimes of Grindelwald'}
-              image= {'img/fantastic-beasts-the-crimes-of-grindelwald.jpg'}
-            />
-            <FilmCard
-              title= {'Fantastic Beasts: The Crimes of Grindelwald'}
-              image= {'img/fantastic-beasts-the-crimes-of-grindelwald.jpg'}
-            />
-            <FilmCard
-              title= {'Fantastic Beasts: The Crimes of Grindelwald'}
-              image= {'img/fantastic-beasts-the-crimes-of-grindelwald.jpg'}
-            />
-            <FilmCard
-              title= {'Fantastic Beasts: The Crimes of Grindelwald'}
-              image= {'img/fantastic-beasts-the-crimes-of-grindelwald.jpg'}
-            />
-            <FilmCard
-              title= {'Fantastic Beasts: The Crimes of Grindelwald'}
-              image= {'img/fantastic-beasts-the-crimes-of-grindelwald.jpg'}
-            />
-            <FilmCard
-              title= {'Fantastic Beasts: The Crimes of Grindelwald'}
-              image= {'img/fantastic-beasts-the-crimes-of-grindelwald.jpg'}
-            />
-            <FilmCard
-              title= {'Fantastic Beasts: The Crimes of Grindelwald'}
-              image= {'img/fantastic-beasts-the-crimes-of-grindelwald.jpg'}
-            />
-            <FilmCard
-              title= {'Fantastic Beasts: The Crimes of Grindelwald'}
-              image= {'img/fantastic-beasts-the-crimes-of-grindelwald.jpg'}
-            />
-          </div>
+          <FilmList
+            filmsCount={filmsCount}
+            films={films}
+          />
 
           <div className="catalog__more">
             <button className="catalog__button" type="button">Show more</button>
