@@ -8,7 +8,7 @@ type FilmListProps = {
 }
 
 function FilmList({filmsCount, films} : FilmListProps) : JSX.Element {
-  const cards = films.length <= filmsCount ? films : films.slice(0, filmsCount-1);
+  const cards = films.length <= filmsCount ? films : films.slice(0, filmsCount);
 
   const [activeFilm, setActiveFilm] = useState({
     id: '',

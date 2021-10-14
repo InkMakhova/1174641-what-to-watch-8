@@ -1,19 +1,20 @@
+import {useHistory} from 'react-router-dom';
 import Logo from '../logo/logo';
 import FilmList from '../film-list/film-list';
 import Footer from '../footer/footer';
 import {Film} from '../../types/film';
+import {AppRoute} from '../../const';
 
 type FilmProps = {
-  name: string;
-  genre: string;
-  released: number;
-  posterImage: string;
-  backgroundImage: string;
+  film: Film;
   films: Film[];
   filmsCount: number;
 }
 
-function WelcomeScreen({name, genre, released, posterImage, backgroundImage, films, filmsCount} : FilmProps) : JSX.Element {
+function WelcomeScreen({film, films, filmsCount} : FilmProps) : JSX.Element {
+  const {id, name, genre, released, posterImage, backgroundImage} = film;
+  const history = useHistory();
+
   return (
     <>
       <section className="film-card">
@@ -54,7 +55,11 @@ function WelcomeScreen({name, genre, released, posterImage, backgroundImage, fil
               </p>
 
               <div className="film-card__buttons">
-                <button className="btn btn--play film-card__button" type="button">
+                <button
+                  className="btn btn--play film-card__button"
+                  type="button"
+                  onClick={() => history.push(`${AppRoute.Player}${id}`)}
+                >
                   <svg viewBox="0 0 19 19" width="19" height="19">
                     <use xlinkHref="#play-s"></use>
                   </svg>

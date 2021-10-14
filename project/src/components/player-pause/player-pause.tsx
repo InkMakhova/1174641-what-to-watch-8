@@ -1,15 +1,23 @@
+import {useHistory} from 'react-router-dom';
 import {Film} from '../../types/film';
+import {AppRoute} from "../../const";
 
 type PlayerPauseProps = {
   film: Film;
 }
 
 function PlayerPause({film} : PlayerPauseProps) : JSX.Element {
+  const history = useHistory();
+
   return (
     <div className="player">
       <video src={film.previewVideoLink} className="player__video" poster="img/player-poster.jpg"></video>
 
-      <button type="button" className="player__exit">Exit</button>
+      <button
+        type="button"
+        className="player__exit"
+        onClick={() => history.push(AppRoute.Root)}
+      >Exit</button>
 
       <div className="player__controls">
         <div className="player__controls-row">

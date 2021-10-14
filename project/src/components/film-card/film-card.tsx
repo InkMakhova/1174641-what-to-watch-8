@@ -1,5 +1,7 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 import {Film} from '../../types/film';
+import {AppRoute} from '../../const';
 
 type FilmCardProps = {
   film: Film;
@@ -20,7 +22,7 @@ function FilmCard({film, name, previewImage, mouseEnterHandler} : FilmCardProps)
         <img src={previewImage} alt={name} width="280" height="175"/>
       </div>
       <h3 className="small-film-card__title">
-        <a className="small-film-card__link" href="film-page.html">{name}</a>
+        <Link className="small-film-card__link" to={`${AppRoute.Film}${film.id}`}>{name}</Link>
       </h3>
     </article>
   );

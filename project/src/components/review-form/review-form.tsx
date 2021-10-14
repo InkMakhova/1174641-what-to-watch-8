@@ -1,4 +1,4 @@
-import {useState, ChangeEvent} from 'react';
+import {useState, FormEvent, ChangeEvent} from 'react';
 
 const grades = ['1','2','3','4','5','6','7','8','9','10'];
 
@@ -8,7 +8,13 @@ function ReviewForm() : JSX.Element {
 
   return (
     <div className="add-review">
-      <form action="#" className="add-review__form">
+      <form
+        action="#"
+        className="add-review__form"
+        onSubmit={(evt: FormEvent<HTMLFormElement>) => {
+          evt.preventDefault();
+        }}
+      >
         <div className="rating">
           <div className="rating__stars">
             {grades.map((grade) => (

@@ -9,6 +9,7 @@ import Player from '../player/player';
 import Page404 from '../page-404/page-404';
 import PrivateRoute from '../private-route/private-route';
 import {Film} from '../../types/film';
+import ReviewForm from '../review-form/review-form';
 
 type AppScreenProps = {
   film: Film,
@@ -22,14 +23,13 @@ function App({film, films, filmsCount} : AppScreenProps): JSX.Element {
       <Switch>
         <Route exact path={AppRoute.Root}>
           <WelcomeScreen
-            name= {film.name}
-            genre = {film.genre}
-            released= {film.released}
-            posterImage={film.posterImage}
-            backgroundImage={film.backgroundImage}
+            film={film}
             films={films}
             filmsCount={filmsCount}
           />
+        </Route>
+        <Route exact path='/review'>
+          <ReviewForm />
         </Route>
         <Route exact path={AppRoute.Login}>
           <SignIn />
@@ -37,25 +37,29 @@ function App({film, films, filmsCount} : AppScreenProps): JSX.Element {
         <PrivateRoute
           exact
           path={AppRoute.MyList}
-          render={() => <MyList />}
+          render={() => <MyList myFilms={films}/>}
           authorizationStatus={AuthorizationStatus.NoAuth}
         >
         </PrivateRoute>
         <PrivateRoute
           exact
-          path={AppRoute.AddReview}
-          render={() => (<AddReview
-            title={'The Grand Budapest Hotel'}
-            image={'img/bg-the-grand-budapest-hotel.jpg'}
-            page={''}    />)}
+          path={`${AppRoute.Film}:id${AppRoute.AddReview}`}
+          render={() => (
+            <AddReview
+              film={films[1]}
+            />)}
           authorizationStatus={AuthorizationStatus.NoAuth}
         >
         </PrivateRoute>
-        <Route exact path={AppRoute.Film}>
-          <MoviePage />
+        <Route exact path={`${AppRoute.Film}:id`}>
+          <MoviePage
+            similarFilms={films}
+          />
         </Route>
-        <Route exact path={AppRoute.Player}>
-          <Player />
+        <Route exact path={`${AppRoute.Player}:id`}>
+          <Player
+            film={films[1]}
+          />
         </Route>
         <Route>
           <Page404 />
