@@ -11,7 +11,7 @@ type FilmProps = {
   filmsCount: number;
 }
 
-function WelcomeScreen({film, films, filmsCount} : FilmProps) : JSX.Element {
+function WelcomeScreen({film, films, filmsCount}: FilmProps): JSX.Element {
   const {id, name, genre, released, posterImage, backgroundImage} = film;
   const history = useHistory();
 
