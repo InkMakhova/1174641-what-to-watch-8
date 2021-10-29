@@ -23,7 +23,7 @@ export const reviews : FilmReview[] = [
         rating: 4.4,
         comment: 'Poised to be an instant classic, almost everything about this film is phenomenal - the acting, the cinematography, the discography, etc.',
         date: '2021-09-11T13:29:26.185Z',
-      }
+      },
     ],
   },
   {
@@ -48,7 +48,7 @@ export const reviews : FilmReview[] = [
         rating: 8.3,
         comment: 'A movie that will take you to another world full of emotions.',
         date: '2021-09-25T13:29:26.185Z',
-      }
+      },
     ],
   },
   {
@@ -73,7 +73,7 @@ export const reviews : FilmReview[] = [
         rating: 8.8,
         comment: 'Poised to be an instant classic, almost everything about this film is phenomenal - the acting, the cinematography, the discography, etc.',
         date: '2021-10-02T13:29:26.185Z',
-      }
+      },
     ],
   },
   {
@@ -98,7 +98,7 @@ export const reviews : FilmReview[] = [
         rating: 2.9,
         comment: 'This movie really touched my heart, it really is the best movie of the year and everyone should see this masterpiece.',
         date: '2021-09-29T13:29:26.185Z',
-      }
+      },
     ],
   },
   {
@@ -133,7 +133,7 @@ export const reviews : FilmReview[] = [
         rating: 1,
         comment: 'This movie is perfect in all its categories: credits, sound track, production, casting, writing, photography, editing, acting, and direction.\\nI was amazed with the freedom of the use of the camera. This movie will change the way movies are made. Slow-mo, stills, black and white, and color were all used to brilliant effect.',
         date: '2021-09-19T13:29:26.185Z',
-      }
+      },
     ],
   },
   {
@@ -158,7 +158,7 @@ export const reviews : FilmReview[] = [
         rating: 3.9,
         comment: 'I personally found this movie to be boring. Definitely one of the most boring movies I\'ve ever seen.',
         date: '2021-09-20T13:29:26.185Z',
-      }
+      },
     ],
   },
   {
@@ -183,7 +183,7 @@ export const reviews : FilmReview[] = [
         rating: 7.9,
         comment: 'I personally found this movie to be boring. Definitely one of the most boring movies I\'ve ever seen.',
         date: '2021-09-20T13:29:26.185Z',
-      }
+      },
     ],
   },
   {
@@ -208,7 +208,7 @@ export const reviews : FilmReview[] = [
         rating: 7.6,
         comment: 'This movie is perfect in all its categories: credits, sound track, production, casting, writing, photography, editing, acting, and direction.\\nI was amazed with the freedom of the use of the camera. This movie will change the way movies are made. Slow-mo, stills, black and white, and color were all used to brilliant effect.',
         date: '2021-09-20T13:29:26.185Z',
-      }
+      },
     ],
   },
-]
+];
