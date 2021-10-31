@@ -2,12 +2,10 @@ import {useState, useRef, useEffect} from 'react';
 
 type VideoPlayerProps = {
   videoPreviewLink: string;
-  autoPlay: boolean;
-  muted: boolean;
   posterImage: string;
 }
 
-function VideoPlayer({videoPreviewLink, autoPlay, muted, posterImage}: VideoPlayerProps): JSX.Element {
+function VideoPlayer({videoPreviewLink, posterImage}: VideoPlayerProps): JSX.Element {
   const [isLoading, setIsLoading] = useState(true);
 
   const videoRef = useRef<HTMLVideoElement | null>(null);
@@ -32,8 +30,7 @@ function VideoPlayer({videoPreviewLink, autoPlay, muted, posterImage}: VideoPlay
       className="player__video"
       width="280"
       height="175"
-      autoPlay={autoPlay}
-      muted={muted}
+      autoPlay muted
       poster={posterImage}
     >
     </video>

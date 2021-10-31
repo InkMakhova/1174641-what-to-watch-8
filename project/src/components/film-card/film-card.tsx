@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useRef, useState} from 'react';
 import {Link} from 'react-router-dom';
 import {Film} from '../../types/film';
 import VideoPlayer from '../video-player/video-player';
@@ -12,6 +12,7 @@ type FilmCardProps = {
 }
 
 function FilmCard({film, name, previewImage, mouseEnterHandler} : FilmCardProps) : JSX.Element {
+  const activeRef = useRef<boolean>(false);
   const [isPreviewVideo, setIsPreviewVideo] = useState(false);
 
   return (
@@ -19,9 +20,16 @@ function FilmCard({film, name, previewImage, mouseEnterHandler} : FilmCardProps)
       className="small-film-card catalog__films-card"
       onMouseEnter={() => {
         mouseEnterHandler(film);
-        setTimeout(() => setIsPreviewVideo(true), 1000);
+        activeRef.current = true;
+
+        setTimeout(() => {
+          if (activeRef.current) {
+            setIsPreviewVideo(true);
+          }
+        }, 1000);
       }}
       onMouseLeave={() => {
+        activeRef.current = false;
         setIsPreviewVideo(false);
       }}
     >
@@ -29,8 +37,6 @@ function FilmCard({film, name, previewImage, mouseEnterHandler} : FilmCardProps)
         {isPreviewVideo ?
           <VideoPlayer
             videoPreviewLink={film.previewVideoLink}
-            autoPlay
-            muted
             posterImage={film.posterImage}
           /> : <img src={previewImage} alt={name} width="280" height="175"/>}
       </div>
