@@ -12,3 +12,8 @@ export enum AuthorizationStatus {
   NoAuth = 'NO_AUTH',
   Unknown = 'UNKNOWN',
 }
+
+
+export const ALL_GENRES = 'All genres';
+
+export const ACTIVE_GENRE_CLASS_NAME = 'catalog__genres-item--active';
