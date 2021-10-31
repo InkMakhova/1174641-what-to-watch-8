@@ -1,18 +1,39 @@
 import {useHistory} from 'react-router-dom';
+import {connect, ConnectedProps} from 'react-redux';
 import Logo from '../logo/logo';
+import GenreList from '../genre-list/genre-list';
 import FilmList from '../film-list/film-list';
 import Footer from '../footer/footer';
 import {Film} from '../../types/film';
-import {AppRoute} from '../../const';
+import {ALL_GENRES, AppRoute} from '../../const';
+import {State} from '../../types/state';
 
-type FilmProps = {
+type WelcomeScreenProps = {
   film: Film;
-  films: Film[];
   filmsCount: number;
 }
 
-function WelcomeScreen({film, films, filmsCount}: FilmProps): JSX.Element {
+const mapStateToProps = ({currentGenre, films}: State) => ({
+  currentGenre: currentGenre,
+  films,
+});
+
+const connector = connect(mapStateToProps);
+
+type PropsFromRedux = ConnectedProps<typeof connector>;
+type ConnectedComponentProps = PropsFromRedux & WelcomeScreenProps;
+
+function getFilmsByGenre(genre: string, films: Film[]) {
+  if (genre === ALL_GENRES) {
+    return films;
+  }
+  return films.filter((film) => film.genre === genre);
+}
+
+function WelcomeScreen(props: ConnectedComponentProps): JSX.Element {
+  const {film, filmsCount, currentGenre, films} = props;
   const {id, name, genre, released, posterImage, backgroundImage} = film;
+
   const history = useHistory();
 
   return (
@@ -80,42 +101,13 @@ function WelcomeScreen({film, films, filmsCount}: FilmProps): JSX.Element {
         <section className="catalog">
           <h2 className="catalog__title visually-hidden">Catalog</h2>
 
-          <ul className="catalog__genres-list">
-            <li className="catalog__genres-item catalog__genres-item--active">
-              <a href="#" className="catalog__genres-link">All genres</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Comedies</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Crime</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Documentary</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Dramas</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Horror</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Kids & Family</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Romance</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Sci-Fi</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Thrillers</a>
-            </li>
-          </ul>
+          <GenreList
+            films={films}
+          />
 
           <FilmList
             filmsCount={filmsCount}
-            films={films}
+            films={getFilmsByGenre(currentGenre, films)}
           />
 
           <div className="catalog__more">
@@ -129,4 +121,5 @@ function WelcomeScreen({film, films, filmsCount}: FilmProps): JSX.Element {
   );
 }
 
-export default WelcomeScreen;
+export {WelcomeScreen};
+export default connector(WelcomeScreen);
