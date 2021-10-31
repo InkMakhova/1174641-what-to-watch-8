@@ -1,6 +1,6 @@
 import {useHistory} from 'react-router-dom';
 import {Film} from '../../types/film';
-import {AppRoute} from "../../const";
+import {AppRoute} from '../../const';
 
 type PlayerPauseProps = {
   film: Film;
@@ -17,7 +17,9 @@ function PlayerPause({film} : PlayerPauseProps) : JSX.Element {
         type="button"
         className="player__exit"
         onClick={() => history.push(AppRoute.Root)}
-      >Exit</button>
+      >
+        Exit
+      </button>
 
       <div className="player__controls">
         <div className="player__controls-row">
