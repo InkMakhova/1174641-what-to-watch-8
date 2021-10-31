@@ -24,7 +24,6 @@ function App({film, films, filmsCount} : AppScreenProps): JSX.Element {
         <Route exact path={AppRoute.Root}>
           <WelcomeScreen
             film={film}
-            films={films}
             filmsCount={filmsCount}
           />
         </Route>
