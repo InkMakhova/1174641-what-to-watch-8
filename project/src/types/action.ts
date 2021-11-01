@@ -1,21 +1,21 @@
 import {Film} from './film';
 
 export enum ActionType {
+  LoadFilms = 'data/loadFilms',
   ChangeGenre = 'filmList/changeGenre',
-  GetFilms = 'filmList/getFilms',
   ChangeLimitCounter = 'filmList/changeLimitCounter',
   ChangeFilmNumberLimit = 'filmList/changeFilmNumberLimit',
   ResetFilmNumberLimit = 'filmList/resetFilmNumberLimit',
 }
 
+export type LoadFilms = {
+  type: ActionType.LoadFilms;
+  payload: Film[];
+}
+
 export type ChangeGenreAction = {
   type: ActionType.ChangeGenre;
   payload: string;
-};
-
-export type GetFilmsAction = {
-  type: ActionType.GetFilms;
-  payload: Film[];
 };
 
 export type ChangeLimitCounter = {
@@ -31,8 +31,8 @@ export type ResetFilmNumberLimit = {
 }
 
 export type Actions =
+  LoadFilms |
   ChangeGenreAction |
-  GetFilmsAction |
   ChangeLimitCounter |
   ChangeFilmNumberLimit |
   ResetFilmNumberLimit;

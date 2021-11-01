@@ -3,19 +3,19 @@ import {
   ChangeFilmNumberLimit,
   ChangeGenreAction,
   ChangeLimitCounter,
-  GetFilmsAction,
+  LoadFilms,
   ResetFilmNumberLimit
 } from '../types/action';
-//import films from '../mocks/films';
+import {Film} from '../types/film';
+
+export const loadFilms = (films: Film[]): LoadFilms => ({
+  type: ActionType.LoadFilms,
+  payload: films,
+});
 
 export const changeGenre = (genre: string): ChangeGenreAction => ({
   type: ActionType.ChangeGenre,
   payload: genre,
-});
-
-export const getFilms = (): GetFilmsAction => ({
-  type: ActionType.GetFilms,
-  payload: films,
 });
 
 export const changeLimitCounter = (): ChangeLimitCounter => ({
