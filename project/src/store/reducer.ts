@@ -1,6 +1,6 @@
 import {Actions, ActionType} from '../types/action';
 import {State} from '../types/state';
-import films from '../mocks/films';
+//import films from '../mocks/films';
 import {FILMS_NUMBER_STEP} from '../const';
 
 const initialFilms = films.slice();

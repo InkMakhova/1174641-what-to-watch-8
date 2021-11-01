@@ -6,7 +6,7 @@ import {
   GetFilmsAction,
   ResetFilmNumberLimit
 } from '../types/action';
-import films from '../mocks/films';
+//import films from '../mocks/films';
 
 export const changeGenre = (genre: string): ChangeGenreAction => ({
   type: ActionType.ChangeGenre,

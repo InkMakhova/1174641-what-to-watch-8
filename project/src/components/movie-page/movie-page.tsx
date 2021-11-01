@@ -4,7 +4,7 @@ import Footer from '../footer/footer';
 import Tabs from '../tabs/tabs';
 import FilmList from '../film-list/film-list';
 import {Film} from '../../types/film';
-import films from '../../mocks/films';
+//import films from '../../mocks/films';
 import {AppRoute} from '../../const';
 
 type MoviePageProps = {

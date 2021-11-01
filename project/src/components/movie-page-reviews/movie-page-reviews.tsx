@@ -1,6 +1,5 @@
 import Logo from '../logo/logo';
 import FilmList from '../film-list/film-list';
-import films from '../../mocks/films';
 import Footer from '../footer/footer';
 
 function MoviePageReviews() : JSX.Element {
