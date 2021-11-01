@@ -1,4 +1,3 @@
-import {Film} from './film';
 import {AuthorizationStatus} from '../const';
 
 export enum ActionType {
@@ -13,7 +12,7 @@ export enum ActionType {
 
 export type LoadFilms = {
   type: ActionType.LoadFilms;
-  payload: Film[];
+  payload: [];
 };
 
 export type ChangeGenre = {

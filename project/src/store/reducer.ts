@@ -4,7 +4,7 @@ import {AuthorizationStatus, FILMS_NUMBER_STEP} from '../const';
 
 const initialState = {
   currentGenre: 'All genres',
-  films,
+  films: [],
   limitCounter: 1,
   filmNumberLimit: FILMS_NUMBER_STEP,
 } as State;
