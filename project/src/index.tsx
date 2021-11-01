@@ -7,10 +7,6 @@ import {composeWithDevTools} from 'redux-devtools-extension';
 import films from './mocks/films';
 import {reducer} from './store/reducer';
 
-const Settings = {
-  FILMS_COUNT: 20,
-};
-
 const store = createStore(
   reducer,
   composeWithDevTools(),
@@ -22,7 +18,6 @@ ReactDOM.render(
       <App
         film={films[5]}
         films={films}
-        filmsCount={Settings.FILMS_COUNT}
       />
     </Provider>
   </React.StrictMode>,

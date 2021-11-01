@@ -2,7 +2,7 @@ import {Link} from 'react-router-dom';
 import {Film} from '../../types/film';
 import {ACTIVE_GENRE_CLASS_NAME, ALL_GENRES, AppRoute} from '../../const';
 import {State} from '../../types/state';
-import {changeGenre} from '../../store/action';
+import {changeGenre, resetFilmNumberLimit} from '../../store/action';
 import {Dispatch} from 'redux';
 import {connect, ConnectedProps} from 'react-redux';
 import {MouseEvent} from 'react';
@@ -18,6 +18,7 @@ const mapStateToProps = ({currentGenre}: State) => ({
 const mapDispatchToProps = (dispatch: Dispatch) => ({
   onChangeGenre(genre: string) {
     dispatch(changeGenre(genre));
+    dispatch(resetFilmNumberLimit());
   },
 });
 
