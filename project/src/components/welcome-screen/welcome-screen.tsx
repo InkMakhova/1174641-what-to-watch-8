@@ -3,6 +3,7 @@ import {connect, ConnectedProps} from 'react-redux';
 import Logo from '../logo/logo';
 import GenreList from '../genre-list/genre-list';
 import FilmList from '../film-list/film-list';
+import ShowMore from '../show-more/show-more';
 import Footer from '../footer/footer';
 import {Film} from '../../types/film';
 import {ALL_GENRES, AppRoute} from '../../const';
@@ -10,12 +11,12 @@ import {State} from '../../types/state';
 
 type WelcomeScreenProps = {
   film: Film;
-  filmsCount: number;
 }
 
-const mapStateToProps = ({currentGenre, films}: State) => ({
+const mapStateToProps = ({currentGenre, films, filmNumberLimit}: State) => ({
   currentGenre: currentGenre,
   films,
+  filmNumberLimit,
 });
 
 const connector = connect(mapStateToProps);
@@ -31,10 +32,12 @@ function getFilmsByGenre(genre: string, films: Film[]) {
 }
 
 function WelcomeScreen(props: ConnectedComponentProps): JSX.Element {
-  const {film, filmsCount, currentGenre, films} = props;
+  const {film, currentGenre, films, filmNumberLimit} = props;
   const {id, name, genre, released, posterImage, backgroundImage} = film;
 
   const history = useHistory();
+
+  const filmsByGenre = getFilmsByGenre(currentGenre, films);
 
   return (
     <>
@@ -106,13 +109,12 @@ function WelcomeScreen(props: ConnectedComponentProps): JSX.Element {
           />
 
           <FilmList
-            filmsCount={filmsCount}
-            films={getFilmsByGenre(currentGenre, films)}
+            filmsCount={filmsByGenre.length > filmNumberLimit ? filmNumberLimit : filmsByGenre.length}
+            films={filmsByGenre}
           />
 
-          <div className="catalog__more">
-            <button className="catalog__button" type="button">Show more</button>
-          </div>
+          {filmsByGenre.length > filmNumberLimit ? <ShowMore /> : ''}
+
         </section>
 
         <Footer />

@@ -14,17 +14,15 @@ import ReviewForm from '../review-form/review-form';
 type AppScreenProps = {
   film: Film,
   films: Film[],
-  filmsCount: number,
 }
 
-function App({film, films, filmsCount} : AppScreenProps): JSX.Element {
+function App({film, films} : AppScreenProps): JSX.Element {
   return (
     <BrowserRouter>
       <Switch>
         <Route exact path={AppRoute.Root}>
           <WelcomeScreen
             film={film}
-            filmsCount={filmsCount}
           />
         </Route>
         <Route exact path='/review'>
