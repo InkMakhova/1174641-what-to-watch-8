@@ -1,4 +1,5 @@
 import {Film} from './film';
+import {AuthorizationStatus} from '../const';
 
 export enum ActionType {
   LoadFilms = 'data/loadFilms',
@@ -6,14 +7,16 @@ export enum ActionType {
   ChangeLimitCounter = 'filmList/changeLimitCounter',
   ChangeFilmNumberLimit = 'filmList/changeFilmNumberLimit',
   ResetFilmNumberLimit = 'filmList/resetFilmNumberLimit',
+  RequireAuthorization = 'user/requireAuthorization',
+  RequireLogout = 'user/requireLogout',
 }
 
 export type LoadFilms = {
   type: ActionType.LoadFilms;
   payload: Film[];
-}
+};
 
-export type ChangeGenreAction = {
+export type ChangeGenre = {
   type: ActionType.ChangeGenre;
   payload: string;
 };
@@ -30,9 +33,20 @@ export type ResetFilmNumberLimit = {
   type: ActionType.ResetFilmNumberLimit;
 }
 
+export type RequireAuthorization = {
+  type: ActionType.RequireAuthorization,
+  payload: AuthorizationStatus,
+}
+
+export type RequireLogout = {
+  type: ActionType.RequireLogout,
+};
+
 export type Actions =
-  LoadFilms |
-  ChangeGenreAction |
-  ChangeLimitCounter |
-  ChangeFilmNumberLimit |
-  ResetFilmNumberLimit;
+  | LoadFilms
+  | ChangeGenre
+  | ChangeLimitCounter
+  | ChangeFilmNumberLimit
+  | ResetFilmNumberLimit
+  | RequireAuthorization
+  | RequireLogout;
