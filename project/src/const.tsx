@@ -18,6 +18,8 @@ export const ALL_GENRES = 'All genres';
 
 export const ACTIVE_GENRE_CLASS_NAME = 'catalog__genres-item--active';
 
+export const FILMS_NUMBER_STEP = 8;
+
 export enum TabType {
   Overview = 'Overview',
   Details = 'Details',
