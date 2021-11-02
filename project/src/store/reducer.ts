@@ -12,19 +12,19 @@ const initialState = {
 const reducer = (state: State = initialState, action: Actions): State => {
   switch (action.type) {
     case ActionType.LoadFilms:
-      return {...state, films: action.payload};
+      return <State>{...state, films: action.payload};
     case ActionType.ChangeGenre:
-      return {...state, currentGenre: action.payload};
+      return <State>{...state, currentGenre: action.payload};
     case ActionType.ChangeLimitCounter:
-      return {...state, limitCounter: state.limitCounter + 1};
+      return <State>{...state, limitCounter: state.limitCounter + 1};
     case ActionType.ChangeFilmNumberLimit:
-      return {...state, filmNumberLimit: state.filmNumberLimit * state.limitCounter};
+      return <State>{...state, filmNumberLimit: state.filmNumberLimit * state.limitCounter};
     case ActionType.ResetFilmNumberLimit:
-      return {...state, limitCounter: initialState.limitCounter, filmNumberLimit: initialState.filmNumberLimit};
+      return <State>{...state, limitCounter: initialState.limitCounter, filmNumberLimit: initialState.filmNumberLimit};
     case ActionType.RequireAuthorization:
-      return {...state, authorizationStatus: action.payload};
+      return <State>{...state, authorizationStatus: action.payload};
     case ActionType.RequireLogout:
-      return {...state, authorizationStatus: AuthorizationStatus.NoAuth};
+      return <State>{...state, authorizationStatus: AuthorizationStatus.NoAuth};
     default:
       return state;
   }
