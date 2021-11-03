@@ -4,8 +4,9 @@ import Footer from '../footer/footer';
 import Tabs from '../tabs/tabs';
 import FilmList from '../film-list/film-list';
 import {Film} from '../../types/film';
-//import films from '../../mocks/films';
 import {AppRoute} from '../../const';
+import {State} from '../../types/state';
+import {connect, ConnectedProps} from 'react-redux';
 
 type MoviePageProps = {
   similarFilms: Film[];
@@ -15,11 +16,21 @@ type FilmParam = {
   id: string;
 }
 
-function MoviePage({similarFilms}: MoviePageProps) : JSX.Element {
+const mapStateToProps = ({films}: State) => ({films});
+
+const connector = connect(mapStateToProps);
+
+type PropsFromRedux = ConnectedProps<typeof connector>;
+
+type Props = MoviePageProps & PropsFromRedux;
+
+function MoviePage(props: Props) : JSX.Element {
+  const {similarFilms, films} = props;
+
   const {id} = useParams<FilmParam>();
   const history = useHistory();
 
-  const currentFilm = films.find((film: Film) => film.id === id);
+  const currentFilm = films.find((film: Film) => film.id === Number(id));
   if (!currentFilm) {
     throw '404';
   }
@@ -120,4 +131,5 @@ function MoviePage({similarFilms}: MoviePageProps) : JSX.Element {
   );
 }
 
-export default MoviePage;
+export {MoviePage};
+export default connector(MoviePage);
