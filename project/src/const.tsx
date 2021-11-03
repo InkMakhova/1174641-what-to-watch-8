@@ -14,6 +14,7 @@ export enum AuthorizationStatus {
 }
 
 export enum APIRoute {
+  PromoFilm = '/promo',
   Films = '/films',
   Login = '/login',
   Logout = '/logout',
