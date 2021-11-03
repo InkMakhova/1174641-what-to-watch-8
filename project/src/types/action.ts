@@ -7,6 +7,7 @@ import {
 } from 'axios';
 import {State} from '../types/state';
 import {
+  loadPromoFilm,
   loadFilms,
   changeGenre,
   changeLimitCounter,
@@ -16,6 +17,7 @@ import {
   requireLogout} from '../store/action';
 
 export enum ActionType {
+  LoadPromoFilm = 'data/loadPromoFilm',
   LoadFilms = 'data/loadFilms',
   ChangeGenre = 'filmList/changeGenre',
   ChangeLimitCounter = 'filmList/changeLimitCounter',
@@ -26,6 +28,7 @@ export enum ActionType {
 }
 
 export type Actions =
+  | ReturnType<typeof loadPromoFilm>
   | ReturnType<typeof loadFilms>
   | ReturnType<typeof changeGenre>
   | ReturnType<typeof changeLimitCounter>

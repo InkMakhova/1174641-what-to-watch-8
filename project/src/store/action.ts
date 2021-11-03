@@ -2,6 +2,11 @@ import {ActionType} from '../types/action';
 import {AuthorizationStatus} from '../const';
 import {Film} from '../types/film';
 
+export const loadPromoFilm = (film: Film) => ({
+  type: ActionType.LoadPromoFilm,
+  payload: film,
+}as const);
+
 export const loadFilms = (films: Film[]) => ({
   type: ActionType.LoadFilms,
   payload: films,
