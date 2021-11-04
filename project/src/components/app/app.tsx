@@ -1,5 +1,5 @@
 import {Switch, Route, BrowserRouter} from 'react-router-dom';
-import {AppRoute, AuthorizationStatus} from '../../const';
+import {AppRoute} from '../../const';
 import WelcomeScreen from '../welcome-screen/welcome-screen';
 import SignIn from '../sign-in/sign-in';
 import MyList from '../my-list/my-list';
@@ -35,7 +35,6 @@ function App({film, films} : AppScreenProps): JSX.Element {
           exact
           path={AppRoute.MyList}
           render={() => <MyList myFilms={films}/>}
-          authorizationStatus={AuthorizationStatus.NoAuth}
         >
         </PrivateRoute>
         <PrivateRoute
@@ -45,7 +44,6 @@ function App({film, films} : AppScreenProps): JSX.Element {
             <AddReview
               film={films[1]}
             />)}
-          authorizationStatus={AuthorizationStatus.NoAuth}
         >
         </PrivateRoute>
         <Route exact path={`${AppRoute.Film}:id`}>
