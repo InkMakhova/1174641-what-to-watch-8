@@ -1,5 +1,7 @@
+import {connect, ConnectedProps} from 'react-redux';
 import {Switch, Route, BrowserRouter} from 'react-router-dom';
 import {AppRoute} from '../../const';
+import LoadingScreen from '../loading-screen/loading-screen';
 import WelcomeScreen from '../welcome-screen/welcome-screen';
 import SignIn from '../sign-in/sign-in';
 import MyList from '../my-list/my-list';
@@ -8,22 +10,34 @@ import AddReview from '../add-review/add-review';
 import Player from '../player/player';
 import Page404 from '../page-404/page-404';
 import PrivateRoute from '../private-route/private-route';
-import {Film} from '../../types/film';
 import ReviewForm from '../review-form/review-form';
+import {State} from '../../types/state';
 
-type AppScreenProps = {
-  film: Film,
-  films: Film[],
-}
+const mapStateToProps = ({promoFilm, films, authorizationStatus, isDataLoaded}: State) => ({
+  promoFilm,
+  films,
+  //authorizationStatus,
+  isDataLoaded,
+});
 
-function App({film, films} : AppScreenProps): JSX.Element {
+const connector = connect(mapStateToProps);
+
+type PropsFromRedux = ConnectedProps<typeof connector>;
+
+function App(props : PropsFromRedux): JSX.Element {
+  const {promoFilm, films, /*authorizationStatus, */isDataLoaded} = props;
+
+  if (!isDataLoaded) {
+    return (
+      <LoadingScreen />
+    );
+  }
+
   return (
     <BrowserRouter>
       <Switch>
         <Route exact path={AppRoute.Root}>
-          <WelcomeScreen
-            film={film}
-          />
+          <WelcomeScreen />
         </Route>
         <Route exact path='/review'>
           <ReviewForm />
@@ -42,7 +56,7 @@ function App({film, films} : AppScreenProps): JSX.Element {
           path={`${AppRoute.Film}:id${AppRoute.AddReview}`}
           render={() => (
             <AddReview
-              film={films[1]}
+              film={promoFilm}
             />)}
         >
         </PrivateRoute>
@@ -53,7 +67,7 @@ function App({film, films} : AppScreenProps): JSX.Element {
         </Route>
         <Route exact path={`${AppRoute.Player}:id`}>
           <Player
-            film={films[1]}
+            film={promoFilm}
           />
         </Route>
         <Route>
@@ -64,5 +78,6 @@ function App({film, films} : AppScreenProps): JSX.Element {
   );
 }
 
-export default App;
+export {App};
+export default connector(App);
 

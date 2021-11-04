@@ -1,31 +1,39 @@
-import {
-  ActionType,
-  ChangeFilmNumberLimit,
-  ChangeGenreAction,
-  ChangeLimitCounter,
-  GetFilmsAction,
-  ResetFilmNumberLimit
-} from '../types/action';
-import films from '../mocks/films';
+import {ActionType} from '../types/action';
+import {AuthorizationStatus} from '../const';
+import {Film} from '../types/film';
 
-export const changeGenre = (genre: string): ChangeGenreAction => ({
+export const loadPromoFilm = (film: Film) => ({
+  type: ActionType.LoadPromoFilm,
+  payload: film,
+}as const);
+
+export const loadFilms = (films: Film[]) => ({
+  type: ActionType.LoadFilms,
+  payload: films,
+} as const);
+
+export const changeGenre = (genre: string) => ({
   type: ActionType.ChangeGenre,
   payload: genre,
-});
+} as const);
 
-export const getFilms = (): GetFilmsAction => ({
-  type: ActionType.GetFilms,
-  payload: films,
-});
-
-export const changeLimitCounter = (): ChangeLimitCounter => ({
+export const changeLimitCounter = () => ({
   type: ActionType.ChangeLimitCounter,
-});
+} as const);
 
-export const changeFilmNumberLimit = (): ChangeFilmNumberLimit => ({
+export const changeFilmNumberLimit = () => ({
   type: ActionType.ChangeFilmNumberLimit,
-});
+} as const);
 
-export const resetFilmNumberLimit = (): ResetFilmNumberLimit => ({
+export const resetFilmNumberLimit = () => ({
   type: ActionType.ResetFilmNumberLimit,
-});
+} as const);
+
+export const requireAuthorization = (authStatus: AuthorizationStatus) => ({
+  type: ActionType.RequireAuthorization,
+  payload: authStatus,
+} as const);
+
+export const requireLogout = () => ({
+  type: ActionType.RequireLogout,
+} as const);
