@@ -13,6 +13,12 @@ export enum AuthorizationStatus {
   Unknown = 'UNKNOWN',
 }
 
+export enum APIRoute {
+  PromoFilm = '/promo',
+  Films = '/films',
+  Login = '/login',
+  Logout = '/logout',
+}
 
 export const ALL_GENRES = 'All genres';
 

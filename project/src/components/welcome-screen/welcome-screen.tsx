@@ -9,12 +9,9 @@ import {Film} from '../../types/film';
 import {ALL_GENRES, AppRoute} from '../../const';
 import {State} from '../../types/state';
 
-type WelcomeScreenProps = {
-  film: Film;
-}
-
-const mapStateToProps = ({currentGenre, films, filmNumberLimit}: State) => ({
+const mapStateToProps = ({currentGenre, promoFilm, films, filmNumberLimit}: State) => ({
   currentGenre: currentGenre,
+  promoFilm,
   films,
   filmNumberLimit,
 });
@@ -22,7 +19,6 @@ const mapStateToProps = ({currentGenre, films, filmNumberLimit}: State) => ({
 const connector = connect(mapStateToProps);
 
 type PropsFromRedux = ConnectedProps<typeof connector>;
-type ConnectedComponentProps = PropsFromRedux & WelcomeScreenProps;
 
 function getFilmsByGenre(genre: string, films: Film[]) {
   if (genre === ALL_GENRES) {
@@ -31,9 +27,9 @@ function getFilmsByGenre(genre: string, films: Film[]) {
   return films.filter((film) => film.genre === genre);
 }
 
-function WelcomeScreen(props: ConnectedComponentProps): JSX.Element {
-  const {film, currentGenre, films, filmNumberLimit} = props;
-  const {id, name, genre, released, posterImage, backgroundImage} = film;
+function WelcomeScreen(props: PropsFromRedux): JSX.Element {
+  const {promoFilm, currentGenre, films, filmNumberLimit} = props;
+  const {id, name, genre, released, posterImage, backgroundImage} = promoFilm;
 
   const history = useHistory();
 

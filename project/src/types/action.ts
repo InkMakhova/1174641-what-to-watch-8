@@ -1,38 +1,43 @@
-import {Film} from './film';
+import {
+  ThunkAction,
+  ThunkDispatch
+} from 'redux-thunk';
+import {
+  AxiosInstance
+} from 'axios';
+import {State} from '../types/state';
+import {
+  loadPromoFilm,
+  loadFilms,
+  changeGenre,
+  changeLimitCounter,
+  changeFilmNumberLimit,
+  resetFilmNumberLimit,
+  requireAuthorization,
+  requireLogout} from '../store/action';
 
 export enum ActionType {
+  LoadPromoFilm = 'data/loadPromoFilm',
+  LoadFilms = 'data/loadFilms',
   ChangeGenre = 'filmList/changeGenre',
-  GetFilms = 'filmList/getFilms',
   ChangeLimitCounter = 'filmList/changeLimitCounter',
   ChangeFilmNumberLimit = 'filmList/changeFilmNumberLimit',
   ResetFilmNumberLimit = 'filmList/resetFilmNumberLimit',
-}
-
-export type ChangeGenreAction = {
-  type: ActionType.ChangeGenre;
-  payload: string;
-};
-
-export type GetFilmsAction = {
-  type: ActionType.GetFilms;
-  payload: Film[];
-};
-
-export type ChangeLimitCounter = {
-  type: ActionType.ChangeLimitCounter;
-}
-
-export type ChangeFilmNumberLimit = {
-  type: ActionType.ChangeFilmNumberLimit;
-}
-
-export type ResetFilmNumberLimit = {
-  type: ActionType.ResetFilmNumberLimit;
+  RequireAuthorization = 'user/requireAuthorization',
+  RequireLogout = 'user/requireLogout',
 }
 
 export type Actions =
-  ChangeGenreAction |
-  GetFilmsAction |
-  ChangeLimitCounter |
-  ChangeFilmNumberLimit |
-  ResetFilmNumberLimit;
+  | ReturnType<typeof loadPromoFilm>
+  | ReturnType<typeof loadFilms>
+  | ReturnType<typeof changeGenre>
+  | ReturnType<typeof changeLimitCounter>
+  | ReturnType<typeof changeLimitCounter>
+  | ReturnType<typeof changeFilmNumberLimit>
+  | ReturnType<typeof resetFilmNumberLimit>
+  | ReturnType<typeof requireAuthorization>
+  | ReturnType<typeof requireLogout>;
+
+export type ThunkActionResult<R = Promise<void>> = ThunkAction<R, State, AxiosInstance, Actions>;
+
+export type ThunkAppDispatch = ThunkDispatch<State, AxiosInstance, Actions>;
