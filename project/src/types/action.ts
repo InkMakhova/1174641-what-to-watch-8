@@ -9,6 +9,7 @@ import {State} from '../types/state';
 import {
   loadPromoFilm,
   loadFilms,
+  loadFilm,
   changeGenre,
   changeLimitCounter,
   changeFilmNumberLimit,
@@ -21,6 +22,7 @@ import {
 export enum ActionType {
   LoadPromoFilm = 'data/loadPromoFilm',
   LoadFilms = 'data/loadFilms',
+  LoadFilm = 'data/loadFilm',
   ChangeGenre = 'filmList/changeGenre',
   ChangeLimitCounter = 'filmList/changeLimitCounter',
   ChangeFilmNumberLimit = 'filmList/changeFilmNumberLimit',
@@ -34,6 +36,7 @@ export enum ActionType {
 export type Actions =
   | ReturnType<typeof loadPromoFilm>
   | ReturnType<typeof loadFilms>
+  | ReturnType<typeof loadFilm>
   | ReturnType<typeof changeGenre>
   | ReturnType<typeof changeLimitCounter>
   | ReturnType<typeof changeLimitCounter>

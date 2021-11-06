@@ -34,6 +34,7 @@ const initialState = {
   currentGenre: 'All genres',
   promoFilm: initialPromoFilm,
   films: [],
+  currentFilm: initialPromoFilm,
   limitCounter: 1,
   filmNumberLimit: FILMS_NUMBER_STEP,
   isDataLoaded: false,
@@ -47,6 +48,8 @@ const reducer = (state: State = initialState, action: Actions): State => {
       return {...state, promoFilm: action.payload} as State;
     case ActionType.LoadFilms:
       return {...state, films: action.payload} as State;
+    case ActionType.LoadFilm:
+      return {...state, currentFilm: action.payload} as State;
     case ActionType.ChangeGenre:
       return {...state, currentGenre: action.payload} as State;
     case ActionType.ChangeLimitCounter:

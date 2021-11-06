@@ -6,6 +6,7 @@ export type State = {
   currentGenre: string;
   promoFilm: Film;
   films: Film[];
+  currentFilm: Film;
   limitCounter: number;
   filmNumberLimit: number;
   authorizationStatus: AuthorizationStatus,
