@@ -14,7 +14,9 @@ import {
   changeFilmNumberLimit,
   resetFilmNumberLimit,
   requireAuthorization,
-  requireLogout} from '../store/action';
+  requireLogout,
+  changeUser,
+  redirectToRoute} from '../store/action';
 
 export enum ActionType {
   LoadPromoFilm = 'data/loadPromoFilm',
@@ -25,6 +27,8 @@ export enum ActionType {
   ResetFilmNumberLimit = 'filmList/resetFilmNumberLimit',
   RequireAuthorization = 'user/requireAuthorization',
   RequireLogout = 'user/requireLogout',
+  ChangeUser = 'user/user',
+  RedirectToRoute = 'filmList/redirectToRoute',
 }
 
 export type Actions =
@@ -36,7 +40,9 @@ export type Actions =
   | ReturnType<typeof changeFilmNumberLimit>
   | ReturnType<typeof resetFilmNumberLimit>
   | ReturnType<typeof requireAuthorization>
-  | ReturnType<typeof requireLogout>;
+  | ReturnType<typeof requireLogout>
+  | ReturnType<typeof changeUser>
+  | ReturnType<typeof redirectToRoute>;
 
 export type ThunkActionResult<R = Promise<void>> = ThunkAction<R, State, AxiosInstance, Actions>;
 
