@@ -1,6 +1,7 @@
 import {useHistory} from 'react-router-dom';
 import {connect, ConnectedProps} from 'react-redux';
 import Logo from '../logo/logo';
+import UserBlock from '../user-block/user-block';
 import GenreList from '../genre-list/genre-list';
 import FilmList from '../film-list/film-list';
 import ShowMore from '../show-more/show-more';
@@ -9,7 +10,7 @@ import {Film} from '../../types/film';
 import {ALL_GENRES, AppRoute} from '../../const';
 import {State} from '../../types/state';
 
-const mapStateToProps = ({currentGenre, promoFilm, films, filmNumberLimit}: State) => ({
+const mapStateToProps = ({currentGenre, promoFilm, films, filmNumberLimit, authorizationStatus}: State) => ({
   currentGenre: currentGenre,
   promoFilm,
   films,
@@ -49,16 +50,7 @@ function WelcomeScreen(props: PropsFromRedux): JSX.Element {
             <Logo />
           </div>
 
-          <ul className="user-block">
-            <li className="user-block__item">
-              <div className="user-block__avatar">
-                <img src="img/avatar.jpg" alt="User avatar" width="63" height="63"/>
-              </div>
-            </li>
-            <li className="user-block__item">
-              <a className="user-block__link">Sign out</a>
-            </li>
-          </ul>
+          <UserBlock />
         </header>
 
         <div className="film-card__wrap">
