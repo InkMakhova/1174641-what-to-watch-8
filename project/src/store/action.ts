@@ -14,7 +14,7 @@ export const loadFilms = (films: Film[]) => ({
 } as const);
 
 export const loadFilm = (film: Film) => ({
-  type: ActionType.LoadFilms,
+  type: ActionType.LoadFilm,
   payload: film,
 } as const);
 
