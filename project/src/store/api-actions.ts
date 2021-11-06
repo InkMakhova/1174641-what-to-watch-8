@@ -3,9 +3,11 @@ import {
   changeUser,
   loadFilms,
   loadPromoFilm,
+  loadFilm,
   requireAuthorization,
   requireLogout,
-  redirectToRoute} from './action';
+  redirectToRoute
+} from './action';
 import {dropToken, saveToken} from '../services/token';
 import {
   APIRoute,
