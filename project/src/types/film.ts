@@ -29,7 +29,7 @@ export type FilmFromServer = {
   'preview_video_link'?: string,
   description: string,
   rating: number,
-  scores_count?: number,
+  'scores_count'?: number,
   director: string,
   starring: string[],
   'run_time'?: number,
