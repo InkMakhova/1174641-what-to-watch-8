@@ -3,6 +3,7 @@ import FilmList from '../film-list/film-list';
 import Footer from '../footer/footer';
 import {Film} from '../../types/film';
 import UserBlock from '../user-block/user-block';
+import {FilmListType} from '../../const';
 
 type MyListProps = {
   myFilms: Film[];
@@ -25,7 +26,7 @@ function MyList({myFilms} : MyListProps) : JSX.Element {
         <h2 className="catalog__title visually-hidden">Catalog</h2>
         <FilmList
           filmsCount={9}
-          // films={myFilms}
+          listType={FilmListType.UserList}
         />
       </section>
 

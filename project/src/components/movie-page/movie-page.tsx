@@ -3,38 +3,34 @@ import Logo from '../logo/logo';
 import Footer from '../footer/footer';
 import Tabs from '../tabs/tabs';
 import FilmList from '../film-list/film-list';
-import {Film} from '../../types/film';
-import {AppRoute} from '../../const';
+import {AppRoute, FilmListType, SIMILAR_FILM_NUMBER} from '../../const';
 import {State} from '../../types/state';
 import {connect, ConnectedProps} from 'react-redux';
 import UserBlock from '../user-block/user-block';
-
-type MoviePageProps = {
-  similarFilms: Film[];
-}
+import {fetchFilmInfoAction, fetchSimilarFilmsAction} from '../../store/api-actions';
+import {ThunkAppDispatch} from '../../types/action';
+import {store} from '../../index';
+import {useEffect} from 'react';
 
 type FilmParam = {
   id: string;
 }
 
-const mapStateToProps = ({films}: State) => ({films});
+const mapStateToProps = ({currentFilm}: State) => ({currentFilm});
 
 const connector = connect(mapStateToProps);
 
 type PropsFromRedux = ConnectedProps<typeof connector>;
 
-type Props = MoviePageProps & PropsFromRedux;
-
-function MoviePage(props: Props) : JSX.Element {
-  const {similarFilms, films} = props;
+function MoviePage(props: PropsFromRedux) : JSX.Element {
+  const {currentFilm} = props;
 
   const {id} = useParams<FilmParam>();
+  useEffect(() => {
+    (store.dispatch as ThunkAppDispatch)(fetchFilmInfoAction(Number(id)));
+    (store.dispatch as ThunkAppDispatch)(fetchSimilarFilmsAction(Number(id)));
+  }, [id]);
   const history = useHistory();
-
-  const currentFilm = films.find((film: Film) => film.id === Number(id));
-  if (!currentFilm) {
-    throw '404';
-  }
 
   return (
     <>
@@ -109,8 +105,8 @@ function MoviePage(props: Props) : JSX.Element {
           <h2 className="catalog__title">More like this</h2>
 
           <FilmList
-            filmsCount={4}
-            films={similarFilms}
+            listType={FilmListType.SimilarList}
+            filmsCount={SIMILAR_FILM_NUMBER}
           />
         </section>
 

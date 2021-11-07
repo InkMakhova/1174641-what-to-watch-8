@@ -7,7 +7,7 @@ import FilmList from '../film-list/film-list';
 import ShowMore from '../show-more/show-more';
 import Footer from '../footer/footer';
 import {Film} from '../../types/film';
-import {ALL_GENRES, AppRoute} from '../../const';
+import {ALL_GENRES, AppRoute, FilmListType} from '../../const';
 import {State} from '../../types/state';
 
 const mapStateToProps = ({currentGenre, promoFilm, films, filmNumberLimit, authorizationStatus}: State) => ({
@@ -98,7 +98,7 @@ function WelcomeScreen(props: PropsFromRedux): JSX.Element {
 
           <FilmList
             filmsCount={filmsByGenre.length > filmNumberLimit ? filmNumberLimit : filmsByGenre.length}
-            films={filmsByGenre}
+            listType={FilmListType.MainList}
           />
 
           {filmsByGenre.length > filmNumberLimit ? <ShowMore /> : ''}
