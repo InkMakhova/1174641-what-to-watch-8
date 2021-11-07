@@ -3,15 +3,10 @@ export type User = {
   name: string,
 }
 
-export type UserReview = {
+export type FilmReview = {
   id: number,
   user: User,
   rating: number,
   comment: string,
   date: string,
-}
-
-export type FilmReview = {
-  filmId: number,
-  reviews: UserReview[],
 }

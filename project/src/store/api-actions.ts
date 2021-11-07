@@ -6,7 +6,7 @@ import {
   loadFilm,
   requireAuthorization,
   requireLogout,
-  redirectToRoute, loadSimilarFilms
+  redirectToRoute, loadSimilarFilms, loadComments
 } from './action';
 import {dropToken, saveToken} from '../services/token';
 import {
@@ -19,6 +19,7 @@ import {HttpCode} from '../services/api';
 import {UserFromServer} from '../types/user';
 import {adaptToClientFilm, adaptToClientUser} from '../services/adapter';
 import {initialUser} from './reducer';
+import {FilmReview} from '../types/film-review';
 
 export const fetchPromoFilmAction = (): ThunkActionResult =>
   async (dispatch, _getState, api): Promise<void> => {
@@ -50,6 +51,12 @@ export const fetchSimilarFilmsAction = (filmId: number): ThunkActionResult =>
     const {data} = await api.get<Film[]>(`${APIRoute.Films}/${filmId}${APIRoute.Similar}`);
     const adaptedData = data.map((film) => adaptToClientFilm(film));
     dispatch(loadSimilarFilms(adaptedData));
+  };
+
+export const fetchCommentsAction = (filmId: number): ThunkActionResult =>
+  async (dispatch, _getState, api): Promise<void> => {
+    const {data} = await api.get<FilmReview[]>(`${APIRoute.Comments}/${filmId}`);
+    dispatch(loadComments(data));
   };
 
 export const checkAuthAction = (): ThunkActionResult =>

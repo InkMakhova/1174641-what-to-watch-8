@@ -2,6 +2,7 @@ import {ActionType} from '../types/action';
 import {AppRoute, AuthorizationStatus} from '../const';
 import {Film} from '../types/film';
 import {User} from '../types/user';
+import {FilmReview} from '../types/film-review';
 
 export const loadPromoFilm = (film: Film) => ({
   type: ActionType.LoadPromoFilm,
@@ -21,6 +22,11 @@ export const loadFilm = (film: Film) => ({
 export const loadSimilarFilms = (films: Film[]) => ({
   type: ActionType.LoadSimilarFilms,
   payload: films,
+} as const);
+
+export const loadComments = (comments: FilmReview[]) => ({
+  type: ActionType.LoadComments,
+  payload: comments,
 } as const);
 
 export const changeGenre = (genre: string) => ({

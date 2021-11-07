@@ -11,6 +11,7 @@ import {
   loadFilms,
   loadFilm,
   loadSimilarFilms,
+  loadComments,
   changeGenre,
   changeLimitCounter,
   changeFilmNumberLimit,
@@ -25,6 +26,7 @@ export enum ActionType {
   LoadFilms = 'data/loadFilms',
   LoadFilm = 'data/loadFilm',
   LoadSimilarFilms = 'data/loadSimilarFilms',
+  LoadComments = 'data/loadComments',
   ChangeGenre = 'filmList/changeGenre',
   ChangeLimitCounter = 'filmList/changeLimitCounter',
   ChangeFilmNumberLimit = 'filmList/changeFilmNumberLimit',
@@ -40,6 +42,7 @@ export type Actions =
   | ReturnType<typeof loadFilms>
   | ReturnType<typeof loadFilm>
   | ReturnType<typeof loadSimilarFilms>
+  | ReturnType<typeof loadComments>
   | ReturnType<typeof changeGenre>
   | ReturnType<typeof changeLimitCounter>
   | ReturnType<typeof changeLimitCounter>
