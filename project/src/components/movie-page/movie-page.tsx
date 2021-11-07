@@ -3,7 +3,7 @@ import Logo from '../logo/logo';
 import Footer from '../footer/footer';
 import Tabs from '../tabs/tabs';
 import FilmList from '../film-list/film-list';
-import {AppRoute, FilmListType, SIMILAR_FILM_NUMBER} from '../../const';
+import {AppRoute, AuthorizationStatus, FilmListType, SIMILAR_FILM_NUMBER} from '../../const';
 import {State} from '../../types/state';
 import {connect, ConnectedProps} from 'react-redux';
 import UserBlock from '../user-block/user-block';
@@ -16,16 +16,19 @@ type FilmParam = {
   id: string;
 }
 
-const mapStateToProps = ({currentFilm, comments}: State) => ({
+const mapStateToProps = ({currentFilm, comments, authorizationStatus}: State) => ({
   currentFilm,
   comments,
+  authorizationStatus,
 });
 
 const connector = connect(mapStateToProps);
 
 type PropsFromRedux = ConnectedProps<typeof connector>;
 
-function MoviePage({currentFilm, comments}: PropsFromRedux) : JSX.Element {
+function MoviePage(props: PropsFromRedux) : JSX.Element {
+  const {currentFilm, comments, authorizationStatus} = props;
+
   const {id} = useParams<FilmParam>();
 
   useEffect(() => {
@@ -79,12 +82,16 @@ function MoviePage({currentFilm, comments}: PropsFromRedux) : JSX.Element {
                   </svg>
                   <span>My list</span>
                 </button>
-                <Link
-                  className="btn film-card__button"
-                  to={`${AppRoute.Film}${id}${AppRoute.AddReview}`}
-                >
-                  Add review
-                </Link>
+                {
+                  authorizationStatus === AuthorizationStatus.Auth ?
+                    <Link
+                      className="btn film-card__button"
+                      to={`${AppRoute.Film}${id}${AppRoute.AddReview}`}
+                    >
+                      Add review
+                    </Link> : ''
+                }
+
               </div>
             </div>
           </div>
