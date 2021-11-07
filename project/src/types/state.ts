@@ -7,6 +7,7 @@ export type State = {
   promoFilm: Film;
   films: Film[];
   currentFilm: Film;
+  similarFilms: Film[];
   limitCounter: number;
   filmNumberLimit: number;
   authorizationStatus: AuthorizationStatus,

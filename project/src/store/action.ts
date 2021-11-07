@@ -18,6 +18,11 @@ export const loadFilm = (film: Film) => ({
   payload: film,
 } as const);
 
+export const loadSimilarFilms = (films: Film[]) => ({
+  type: ActionType.LoadSimilarFilms,
+  payload: films,
+} as const);
+
 export const changeGenre = (genre: string) => ({
   type: ActionType.ChangeGenre,
   payload: genre,
