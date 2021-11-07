@@ -6,7 +6,6 @@ const REQUEST_TIMEOUT = 5000;
 
 export enum HttpCode {
   Unauthorized = 401,
-  NotFound = 404,
 }
 
 type UnauthorizedCallback = () => void;
