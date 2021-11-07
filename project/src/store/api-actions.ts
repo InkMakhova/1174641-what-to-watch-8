@@ -6,7 +6,7 @@ import {
   loadFilm,
   requireAuthorization,
   requireLogout,
-  redirectToRoute
+  redirectToRoute, loadSimilarFilms
 } from './action';
 import {dropToken, saveToken} from '../services/token';
 import {
@@ -43,6 +43,13 @@ export const fetchFilmAction = (): ThunkActionResult =>
     const {data} = await api.get<Film[]>(APIRoute.Films);
     const adaptedData = data.map((film) => adaptToClientFilm(film));
     dispatch(loadFilms(adaptedData));
+  };
+
+export const fetchSimilarFilmsAction = (filmId: number): ThunkActionResult =>
+  async (dispatch, _getState, api): Promise<void> => {
+    const {data} = await api.get<Film[]>(`${APIRoute.Films}/${filmId}${APIRoute.Similar}`);
+    const adaptedData = data.map((film) => adaptToClientFilm(film));
+    dispatch(loadSimilarFilms(adaptedData));
   };
 
 export const checkAuthAction = (): ThunkActionResult =>
