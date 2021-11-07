@@ -1,50 +1,44 @@
-import {useState} from 'react';
 import FilmCard from '../film-card/film-card';
 import {Film} from '../../types/film';
+import {State} from '../../types/state';
+import {ThunkAppDispatch} from '../../types/action';
+import {loadFilm} from '../../store/action';
+import {connect, ConnectedProps} from 'react-redux';
 
 type FilmListProps = {
   filmsCount: number;
-  films: Film[];
 }
 
-function FilmList({filmsCount, films} : FilmListProps) : JSX.Element {
+const mapStateToProps = ({films, currentFilm}: State) => ({
+  films,
+  currentFilm,
+});
+
+const mapDispatchToProps = (dispatch: ThunkAppDispatch) => ({
+  onChangeFilm(film: Film) {
+    dispatch(loadFilm(film));
+  },
+});
+
+const connector = connect(mapStateToProps, mapDispatchToProps);
+
+type PropsFromRedux = ConnectedProps<typeof connector>;
+
+type ConnectedComponentProps = PropsFromRedux & FilmListProps;
+
+function FilmList(props: ConnectedComponentProps) : JSX.Element {
+  const {filmsCount, films, currentFilm, onChangeFilm} = props;
   const cards = films.length <= filmsCount ? films : films.slice(0, filmsCount);
 
-  const [activeFilm, setActiveFilm] = useState({
-    id: 0,
-    name: '',
-    posterImage: '',
-    previewImage: '',
-    backgroundImage: '',
-    backgroundColor: '',
-    videoLink: '',
-    previewVideoLink: '',
-    description: '',
-    rating: 0,
-    scoresCount: 0,
-    director: '',
-    starring: [''],
-    runTime: 0,
-    genre: '',
-    released: 0,
-    isFavorite: false,
-  });
-
-  function handleCardMouseEnter(film : Film) {
-    setActiveFilm(film);
-  }
-
   return (
-    <div className="catalog__films-list" defaultValue={activeFilm.id}>
-      {cards.map((card, id) => {
+    <div className="catalog__films-list" defaultValue={currentFilm.id}>
+      {cards.map((card) => {
         const keyValue = `${card.id}`;
         return (
           <FilmCard
             key = {keyValue}
             film={card}
-            name = {card.name}
-            previewImage = {card.previewImage}
-            mouseEnterHandler={handleCardMouseEnter}
+            mouseEnterHandler={onChangeFilm}
           />
         );
       })}
@@ -52,4 +46,5 @@ function FilmList({filmsCount, films} : FilmListProps) : JSX.Element {
   );
 }
 
-export default FilmList;
+export {FilmList};
+export default connector(FilmList);
