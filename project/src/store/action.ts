@@ -60,7 +60,7 @@ export const changeUser = (user: User) => ({
   payload: user,
 } as const);
 
-export const redirectToRoute = (url: AppRoute) => ({
+export const redirectToRoute = (url: AppRoute | string) => ({
   type: ActionType.RedirectToRoute,
   payload: url,
 } as const);
