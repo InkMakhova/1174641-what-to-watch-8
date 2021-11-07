@@ -29,9 +29,13 @@ export const fetchPromoFilmAction = (): ThunkActionResult =>
 
 export const fetchFilmInfoAction = (filmId: number): ThunkActionResult =>
   async (dispatch, _getState, api): Promise<void> => {
-    const {data} = await api.get<Film>(`${APIRoute.Films}/${filmId}`);
-    const adaptedData = adaptToClientFilm(data);
-    dispatch(loadFilm(adaptedData));
+    await api.get<Film>(`${APIRoute.Films}/${filmId}`)
+      .then(({status, data}) => {
+        const adaptedData = adaptToClientFilm(data);
+        dispatch(loadFilm(adaptedData));
+      }).catch(() => {
+        dispatch(redirectToRoute(AppRoute.Page404));
+      });
   };
 
 export const fetchFilmAction = (): ThunkActionResult =>
