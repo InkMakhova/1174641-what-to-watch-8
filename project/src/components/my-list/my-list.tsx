@@ -25,7 +25,7 @@ function MyList({myFilms} : MyListProps) : JSX.Element {
         <h2 className="catalog__title visually-hidden">Catalog</h2>
         <FilmList
           filmsCount={9}
-          films={myFilms}
+          // films={myFilms}
         />
       </section>
 
