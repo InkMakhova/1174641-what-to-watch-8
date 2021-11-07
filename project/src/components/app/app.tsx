@@ -55,9 +55,7 @@ function App(props : PropsFromRedux): JSX.Element {
           exact
           path={`${AppRoute.Film}:id${AppRoute.AddReview}`}
           render={() => (
-            <AddReview
-              film={promoFilm}
-            />)}
+            <AddReview />)}
         >
         </PrivateRoute>
         <Route exact path={`${AppRoute.Film}:id`}>

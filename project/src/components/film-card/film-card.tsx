@@ -6,10 +6,9 @@ import {AppRoute} from '../../const';
 
 type FilmCardProps = {
   film: Film;
-  mouseEnterHandler: (film : Film) => void;
 }
 
-function FilmCard({film, mouseEnterHandler}: FilmCardProps) : JSX.Element {
+function FilmCard({film}: FilmCardProps) : JSX.Element {
   const activeRef = useRef<boolean>(false);
   const [isPreviewVideo, setIsPreviewVideo] = useState(false);
 
@@ -17,7 +16,6 @@ function FilmCard({film, mouseEnterHandler}: FilmCardProps) : JSX.Element {
     <article
       className="small-film-card catalog__films-card"
       onMouseEnter={() => {
-        mouseEnterHandler(film);
         activeRef.current = true;
 
         setTimeout(() => {

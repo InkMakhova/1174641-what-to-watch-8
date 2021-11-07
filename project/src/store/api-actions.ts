@@ -20,6 +20,7 @@ import {UserFromServer} from '../types/user';
 import {adaptToClientFilm, adaptToClientUser} from '../services/adapter';
 import {initialUser} from './reducer';
 import {FilmReview} from '../types/film-review';
+import {ReviewData} from '../types/review-data';
 
 export const fetchPromoFilmAction = (): ThunkActionResult =>
   async (dispatch, _getState, api): Promise<void> => {
@@ -88,4 +89,19 @@ export const logoutAction = (): ThunkActionResult =>
     dropToken();
     dispatch(requireLogout());
     dispatch(changeUser(initialUser));
+  };
+
+export const reviewAction = ({filmId, rating, comment}: ReviewData, errorHandler: (error: string) => void): ThunkActionResult =>
+  async (dispatch, _getState, api) => {
+    await api.post(`${APIRoute.Comments}/${filmId}`, {rating, comment})
+      .then(({status, data}) => {
+        if (status >= 400 ) {
+          errorHandler('Error sending review. Try again later.');
+        }
+        dispatch(loadComments(data));
+        dispatch(redirectToRoute(`${AppRoute.Film}${String(filmId)}`));
+      })
+      .catch(() => {
+        errorHandler('Error sending review. Try again later.');
+      });
   };
