@@ -6,12 +6,10 @@ import {AppRoute} from '../../const';
 
 type FilmCardProps = {
   film: Film;
-  name: string;
-  previewImage: string;
   mouseEnterHandler: (film : Film) => void;
 }
 
-function FilmCard({film, name, previewImage, mouseEnterHandler} : FilmCardProps) : JSX.Element {
+function FilmCard({film, mouseEnterHandler}: FilmCardProps) : JSX.Element {
   const activeRef = useRef<boolean>(false);
   const [isPreviewVideo, setIsPreviewVideo] = useState(false);
 
@@ -38,10 +36,10 @@ function FilmCard({film, name, previewImage, mouseEnterHandler} : FilmCardProps)
           <VideoPlayer
             videoPreviewLink={film.previewVideoLink}
             posterImage={film.posterImage}
-          /> : <img src={previewImage} alt={name} width="280" height="175"/>}
+          /> : <img src={film.previewImage} alt={film.name} width="280" height="175"/>}
       </div>
       <h3 className="small-film-card__title">
-        <Link className="small-film-card__link" to={`${AppRoute.Film}${film.id}`}>{name}</Link>
+        <Link className="small-film-card__link" to={`${AppRoute.Film}${film.id}`}>{film.name}</Link>
       </h3>
     </article>
   );
