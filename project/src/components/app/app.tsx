@@ -61,16 +61,15 @@ function App(props : PropsFromRedux): JSX.Element {
         >
         </PrivateRoute>
         <Route exact path={`${AppRoute.Film}:id`}>
-          <MoviePage
-            similarFilms={films}
-          />
+          <MoviePage />
+          {/*//similarFilms={films}*/}
         </Route>
         <Route exact path={`${AppRoute.Player}:id`}>
           <Player
             film={promoFilm}
           />
         </Route>
-        <Route>
+        <Route exact path={AppRoute.Page404}>
           <Page404 />
         </Route>
       </Switch>
