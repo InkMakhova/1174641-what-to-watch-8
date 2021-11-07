@@ -5,6 +5,7 @@ export enum AppRoute {
   AddReview = '/review',
   Film = '/films/',
   Player = '/player/',
+  Page404 = '/page-not-found',
 }
 
 export enum AuthorizationStatus {
@@ -18,6 +19,7 @@ export enum APIRoute {
   Films = '/films',
   Login = '/login',
   Logout = '/logout',
+  Similar = '/similar',
 }
 
 export const ALL_GENRES = 'All genres';
