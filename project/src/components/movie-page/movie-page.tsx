@@ -7,7 +7,7 @@ import {AppRoute, FilmListType, SIMILAR_FILM_NUMBER} from '../../const';
 import {State} from '../../types/state';
 import {connect, ConnectedProps} from 'react-redux';
 import UserBlock from '../user-block/user-block';
-import {fetchFilmInfoAction, fetchSimilarFilmsAction} from '../../store/api-actions';
+import {fetchCommentsAction, fetchFilmInfoAction, fetchSimilarFilmsAction} from '../../store/api-actions';
 import {ThunkAppDispatch} from '../../types/action';
 import {store} from '../../index';
 import {useEffect} from 'react';
@@ -16,20 +16,24 @@ type FilmParam = {
   id: string;
 }
 
-const mapStateToProps = ({currentFilm}: State) => ({currentFilm});
+const mapStateToProps = ({currentFilm, comments}: State) => ({
+  currentFilm,
+  comments,
+});
 
 const connector = connect(mapStateToProps);
 
 type PropsFromRedux = ConnectedProps<typeof connector>;
 
-function MoviePage(props: PropsFromRedux) : JSX.Element {
-  const {currentFilm} = props;
-
+function MoviePage({currentFilm, comments}: PropsFromRedux) : JSX.Element {
   const {id} = useParams<FilmParam>();
+
   useEffect(() => {
     (store.dispatch as ThunkAppDispatch)(fetchFilmInfoAction(Number(id)));
     (store.dispatch as ThunkAppDispatch)(fetchSimilarFilmsAction(Number(id)));
+    (store.dispatch as ThunkAppDispatch)(fetchCommentsAction(Number(id)));
   }, [id]);
+
   const history = useHistory();
 
   return (
@@ -95,6 +99,7 @@ function MoviePage(props: PropsFromRedux) : JSX.Element {
             </div>
             <Tabs
               film={currentFilm}
+              comments={comments}
             />
           </div>
         </div>
