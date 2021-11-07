@@ -1,7 +1,7 @@
 import {Film, FilmFromServer} from '../types/film';
 import {User, UserFromServer} from '../types/user';
 
-export function adaptToClientFilm(film: FilmFromServer) {
+export function adaptToClientFilm(film: FilmFromServer): Film {
   const adaptedFilm = Object.assign(
     {},
     film,
@@ -28,10 +28,10 @@ export function adaptToClientFilm(film: FilmFromServer) {
   delete adaptedFilm.run_time;
   delete adaptedFilm.is_favorite;
 
-  return <Film>adaptedFilm;
+  return adaptedFilm as Film;
 }
 
-export function adaptToClientUser(user: UserFromServer) {
+export function adaptToClientUser(user: UserFromServer): User {
   const adaptedUser = Object.assign(
     {},
     user,
@@ -42,5 +42,5 @@ export function adaptToClientUser(user: UserFromServer) {
 
   delete adaptedUser.avatar_url;
 
-  return <User>adaptedUser;
+  return adaptedUser as User;
 }
