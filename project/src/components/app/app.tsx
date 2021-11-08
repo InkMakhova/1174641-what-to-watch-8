@@ -1,6 +1,6 @@
 import {connect, ConnectedProps} from 'react-redux';
-import {Switch, Route, BrowserRouter} from 'react-router-dom';
-import {AppRoute, AuthorizationStatus} from '../../const';
+import {Switch, Route, Router as BrowserRouter} from 'react-router-dom';
+import {AppRoute} from '../../const';
 import LoadingScreen from '../loading-screen/loading-screen';
 import WelcomeScreen from '../welcome-screen/welcome-screen';
 import SignIn from '../sign-in/sign-in';
@@ -12,11 +12,11 @@ import Page404 from '../page-404/page-404';
 import PrivateRoute from '../private-route/private-route';
 import ReviewForm from '../review-form/review-form';
 import {State} from '../../types/state';
+import browserHistory from '../../browser-history';
 
-const mapStateToProps = ({promoFilm, films, authorizationStatus, isDataLoaded}: State) => ({
+const mapStateToProps = ({promoFilm, films, isDataLoaded}: State) => ({
   promoFilm,
   films,
-  //authorizationStatus,
   isDataLoaded,
 });
 
@@ -25,7 +25,7 @@ const connector = connect(mapStateToProps);
 type PropsFromRedux = ConnectedProps<typeof connector>;
 
 function App(props : PropsFromRedux): JSX.Element {
-  const {promoFilm, films, /*authorizationStatus, */isDataLoaded} = props;
+  const {promoFilm, films, isDataLoaded} = props;
 
   if (!isDataLoaded) {
     return (
@@ -34,7 +34,7 @@ function App(props : PropsFromRedux): JSX.Element {
   }
 
   return (
-    <BrowserRouter>
+    <BrowserRouter history={browserHistory}>
       <Switch>
         <Route exact path={AppRoute.Root}>
           <WelcomeScreen />
@@ -48,31 +48,26 @@ function App(props : PropsFromRedux): JSX.Element {
         <PrivateRoute
           exact
           path={AppRoute.MyList}
-          render={() => <MyList myFilms={films}/>}
-          authorizationStatus={AuthorizationStatus.NoAuth}
+          render={({history}) => <MyList myFilms={films}/>}
         >
         </PrivateRoute>
         <PrivateRoute
           exact
           path={`${AppRoute.Film}:id${AppRoute.AddReview}`}
           render={() => (
-            <AddReview
-              film={promoFilm}
-            />)}
-          authorizationStatus={AuthorizationStatus.NoAuth}
+            <AddReview />)}
         >
         </PrivateRoute>
         <Route exact path={`${AppRoute.Film}:id`}>
-          <MoviePage
-            similarFilms={films}
-          />
+          <MoviePage />
+          {/*//similarFilms={films}*/}
         </Route>
         <Route exact path={`${AppRoute.Player}:id`}>
           <Player
             film={promoFilm}
           />
         </Route>
-        <Route>
+        <Route exact path={AppRoute.Page404}>
           <Page404 />
         </Route>
       </Switch>

@@ -2,34 +2,46 @@ import {Actions, ActionType} from '../types/action';
 import {State} from '../types/state';
 import {AuthorizationStatus, FILMS_NUMBER_STEP} from '../const';
 
-const promoFilmMock = {
-  id: 1,
-  name:	'No Country for Old Men',
-  posterImage:	'https://8.react.pages.academy/static/film/poster/No_Country_for_Old_Men.jpg',
-  previewImage:	'https://8.react.pages.academy/static/film/preview/no-country-for-old-men.jpg',
-  backgroundImage:	'https://8.react.pages.academy/static/film/background/No_Country_for_Old_Men.jpg',
-  backgroundColor:	'#BDAD8F',
-  description: 'Violence and mayhem ensue after a hunter stumbles upon a drug deal gone wrong and more than two million dollars in cash near the Rio Grande.',
-  rating:	4.1,
-  scoresCount:	764976,
-  director:	'Ethan Coen',
-  starring: ['Tommy Lee Jones', 'Javier Bardem', 'Josh Brolin'],
-  runTime:	122,
-  genre:	'Crime',
-  released:	2007,
+const initialPromoFilm = {
+  id: 0,
+  name:	'',
+  posterImage:	'',
+  previewImage:	'',
+  backgroundImage:	'',
+  backgroundColor:	'',
+  description: '',
+  rating:	0,
+  scoresCount:	0,
+  director:	'',
+  starring: [],
+  runTime:	0,
+  genre:	'',
+  released:	0,
   isFavorite:	false,
-  videoLink:	'http://media.xiph.org/mango/tears_of_steel_1080p.webm',
-  previewVideoLink:	'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
+  videoLink:	'',
+  previewVideoLink:	'',
+};
+
+export const initialUser = {
+  id: 0,
+  email: '',
+  name: '',
+  avatarUrl: '',
+  token: '',
 };
 
 const initialState = {
   currentGenre: 'All genres',
-  promoFilm: promoFilmMock,
+  promoFilm: initialPromoFilm,
   films: [],
+  currentFilm: initialPromoFilm,
+  similarFilms: [],
+  comments: [],
   limitCounter: 1,
   filmNumberLimit: FILMS_NUMBER_STEP,
   isDataLoaded: false,
   authorizationStatus: AuthorizationStatus.Unknown,
+  user: initialUser,
 } as State;
 
 const reducer = (state: State = initialState, action: Actions): State => {
@@ -38,6 +50,12 @@ const reducer = (state: State = initialState, action: Actions): State => {
       return {...state, promoFilm: action.payload} as State;
     case ActionType.LoadFilms:
       return {...state, films: action.payload} as State;
+    case ActionType.LoadFilm:
+      return {...state, currentFilm: action.payload} as State;
+    case ActionType.LoadSimilarFilms:
+      return {...state, similarFilms: action.payload} as State;
+    case ActionType.LoadComments:
+      return {...state, comments: action.payload} as State;
     case ActionType.ChangeGenre:
       return {...state, currentGenre: action.payload} as State;
     case ActionType.ChangeLimitCounter:
@@ -54,6 +72,8 @@ const reducer = (state: State = initialState, action: Actions): State => {
       } as State;
     case ActionType.RequireLogout:
       return {...state, authorizationStatus: AuthorizationStatus.NoAuth} as State;
+    case ActionType.ChangeUser:
+      return {...state, user: action.payload} as State;
     default:
       return state;
   }

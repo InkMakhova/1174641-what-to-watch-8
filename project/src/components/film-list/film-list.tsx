@@ -1,55 +1,64 @@
-import {useState} from 'react';
 import FilmCard from '../film-card/film-card';
-import {Film} from '../../types/film';
+import {State} from '../../types/state';
+import {connect, ConnectedProps} from 'react-redux';
+import {FilmListType} from '../../const';
 
 type FilmListProps = {
   filmsCount: number;
-  films: Film[];
+  listType: string;
 }
 
-function FilmList({filmsCount, films} : FilmListProps) : JSX.Element {
-  const cards = films.length <= filmsCount ? films : films.slice(0, filmsCount);
+const mapStateToProps = ({films, similarFilms}: State) => ({
+  films,
+  similarFilms,
+});
 
-  const [activeFilm, setActiveFilm] = useState({
-    id: 0,
-    name: '',
-    posterImage: '',
-    previewImage: '',
-    backgroundImage: '',
-    backgroundColor: '',
-    videoLink: '',
-    previewVideoLink: '',
-    description: '',
-    rating: 0,
-    scoresCount: 0,
-    director: '',
-    starring: [''],
-    runTime: 0,
-    genre: '',
-    released: 0,
-    isFavorite: false,
-  });
+const connector = connect(mapStateToProps);
 
-  function handleCardMouseEnter(film : Film) {
-    setActiveFilm(film);
+type PropsFromRedux = ConnectedProps<typeof connector>;
+
+type ConnectedComponentProps = PropsFromRedux & FilmListProps;
+
+function FilmList(props: ConnectedComponentProps) : JSX.Element {
+  const {
+    filmsCount,
+    listType,
+    films,
+    similarFilms} = props;
+
+  function getCards(type: string) {
+    switch (type) {
+      case FilmListType.MainList:
+        return films;
+      case FilmListType.SimilarList:
+        return similarFilms;
+    }
   }
 
+  const filmCards = getCards(listType);
+
+  if (filmCards && filmCards.length > 0) {
+    const cards = filmCards.length <= filmsCount ? filmCards : filmCards.slice(0, filmsCount);
+    return (
+      <div className="catalog__films-list">
+        {cards.map((card) => {
+          const keyValue = `${card.id}`;
+          return (
+            <FilmCard
+              key = {keyValue}
+              film={card}
+            />
+          );
+        })}
+      </div>
+    );
+  }
   return (
-    <div className="catalog__films-list" defaultValue={activeFilm.id}>
-      {cards.map((card, id) => {
-        const keyValue = `${card.id}`;
-        return (
-          <FilmCard
-            key = {keyValue}
-            film={card}
-            name = {card.name}
-            previewImage = {card.previewImage}
-            mouseEnterHandler={handleCardMouseEnter}
-          />
-        );
-      })}
+    <div className="catalog__films-list">
+      <p>There is no data about films</p>
     </div>
   );
 }
 
-export default FilmList;
+export {FilmList};
+export default connector(FilmList);

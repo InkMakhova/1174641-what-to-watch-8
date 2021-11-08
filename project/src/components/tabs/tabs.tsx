@@ -4,14 +4,15 @@ import {Film} from '../../types/film';
 import {ACTIVE_TAB_CLASS_NAME, AppRoute, RatingLevel, TabType} from '../../const';
 import {formatDate, humanizeDate} from '../../util';
 import Review from '../review/review';
-import {reviews} from '../../mocks/reviews';
-import {UserReview} from '../../types/film-review';
+import {FilmReview} from '../../types/film-review';
 
 type TabsProps = {
   film: Film;
+  comments: FilmReview[];
 }
 
-function Tabs({film}: TabsProps): JSX.Element {
+function Tabs(props: TabsProps): JSX.Element {
+  const {film, comments} = props;
   const {
     id,
     genre,
@@ -25,15 +26,15 @@ function Tabs({film}: TabsProps): JSX.Element {
 
   const [activeTab, setActiveTab] = useState(TabType.Overview);
 
-  const filmReviews = reviews.find((review) => review.filmId === film.id);
-
-  let filmUserReviews: UserReview[];
-
-  if (filmReviews) {
-    if (filmReviews.reviews.length > 0) {
-      filmUserReviews = filmReviews.reviews;
-    }
-  }
+  // const filmReviews = reviews.find((review) => review.filmId === film.id);
+  //
+  // let filmUserReviews: FilmReview[];
+  //
+  // if (filmReviews) {
+  //   if (filmReviews.reviews.length > 0) {
+  //     filmUserReviews = filmReviews.reviews;
+  //   }
+  // }
 
   function getRatingLevel(filmRating: number) {
     switch (true) {
@@ -111,7 +112,7 @@ function Tabs({film}: TabsProps): JSX.Element {
         return (
           <div className="film-card__reviews film-card__row">
             <div className="film-card__reviews-col">
-              {filmUserReviews !== null ? filmUserReviews.map((review) => (
+              {comments !== null ? comments.map((review) => (
                 <Review
                   key = {review.id}
                   film={film}

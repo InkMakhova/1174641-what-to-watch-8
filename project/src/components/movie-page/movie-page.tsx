@@ -3,37 +3,41 @@ import Logo from '../logo/logo';
 import Footer from '../footer/footer';
 import Tabs from '../tabs/tabs';
 import FilmList from '../film-list/film-list';
-import {Film} from '../../types/film';
-import {AppRoute} from '../../const';
+import {AppRoute, AuthorizationStatus, FilmListType, SIMILAR_FILM_NUMBER} from '../../const';
 import {State} from '../../types/state';
 import {connect, ConnectedProps} from 'react-redux';
-
-type MoviePageProps = {
-  similarFilms: Film[];
-}
+import UserBlock from '../user-block/user-block';
+import {fetchCommentsAction, fetchFilmInfoAction, fetchSimilarFilmsAction} from '../../store/api-actions';
+import {ThunkAppDispatch} from '../../types/action';
+import {store} from '../../index';
+import {useEffect} from 'react';
 
 type FilmParam = {
   id: string;
 }
 
-const mapStateToProps = ({films}: State) => ({films});
+const mapStateToProps = ({currentFilm, comments, authorizationStatus}: State) => ({
+  currentFilm,
+  comments,
+  authorizationStatus,
+});
 
 const connector = connect(mapStateToProps);
 
 type PropsFromRedux = ConnectedProps<typeof connector>;
 
-type Props = MoviePageProps & PropsFromRedux;
-
-function MoviePage(props: Props) : JSX.Element {
-  const {similarFilms, films} = props;
+function MoviePage(props: PropsFromRedux) : JSX.Element {
+  const {currentFilm, comments, authorizationStatus} = props;
 
   const {id} = useParams<FilmParam>();
-  const history = useHistory();
 
-  const currentFilm = films.find((film: Film) => film.id === Number(id));
-  if (!currentFilm) {
-    throw '404';
-  }
+  useEffect(() => {
+    (store.dispatch as ThunkAppDispatch)(fetchFilmInfoAction(Number(id)));
+    (store.dispatch as ThunkAppDispatch)(fetchSimilarFilmsAction(Number(id)));
+    (store.dispatch as ThunkAppDispatch)(fetchCommentsAction(Number(id)));
+  }, [id]);
+
+  const history = useHistory();
 
   return (
     <>
@@ -50,19 +54,7 @@ function MoviePage(props: Props) : JSX.Element {
               <Logo />
             </div>
 
-            <ul className="user-block">
-              <li className="user-block__item">
-                <div
-                  className="user-block__avatar"
-                  onClick={() => history.push(AppRoute.MyList)}
-                >
-                  <img src="img/avatar.jpg" alt="User avatar" width="63" height="63"/>
-                </div>
-              </li>
-              <li className="user-block__item">
-                <a className="user-block__link">Sign out</a>
-              </li>
-            </ul>
+            <UserBlock />
           </header>
 
           <div className="film-card__wrap">
@@ -90,12 +82,16 @@ function MoviePage(props: Props) : JSX.Element {
                   </svg>
                   <span>My list</span>
                 </button>
-                <Link
-                  className="btn film-card__button"
-                  to={`${AppRoute.Film}${id}${AppRoute.AddReview}`}
-                >
-                  Add review
-                </Link>
+                {
+                  authorizationStatus === AuthorizationStatus.Auth ?
+                    <Link
+                      className="btn film-card__button"
+                      to={`${AppRoute.Film}${id}${AppRoute.AddReview}`}
+                    >
+                      Add review
+                    </Link> : ''
+                }
+
               </div>
             </div>
           </div>
@@ -110,6 +106,7 @@ function MoviePage(props: Props) : JSX.Element {
             </div>
             <Tabs
               film={currentFilm}
+              comments={comments}
             />
           </div>
         </div>
@@ -120,8 +117,8 @@ function MoviePage(props: Props) : JSX.Element {
           <h2 className="catalog__title">More like this</h2>
 
           <FilmList
-            filmsCount={4}
-            films={similarFilms}
+            listType={FilmListType.SimilarList}
+            filmsCount={SIMILAR_FILM_NUMBER}
           />
         </section>
 
