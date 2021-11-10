@@ -7,11 +7,13 @@ import FilmList from '../film-list/film-list';
 import ShowMore from '../show-more/show-more';
 import Footer from '../footer/footer';
 import {Film} from '../../types/film';
-import {ALL_GENRES, AppRoute, FilmListType} from '../../const';
+import {ALL_GENRES, AppRoute} from '../../const';
 import {State} from '../../types/state';
+import {useEffect} from 'react';
+import {store} from '../../index';
 
-const mapStateToProps = ({currentGenre, promoFilm, films, filmNumberLimit, authorizationStatus}: State) => ({
-  currentGenre: currentGenre,
+const mapStateToProps = ({currentGenre, promoFilm, films, filmNumberLimit}: State) => ({
+  currentGenre,
   promoFilm,
   films,
   filmNumberLimit,
@@ -33,6 +35,9 @@ function WelcomeScreen(props: PropsFromRedux): JSX.Element {
   const {id, name, genre, released, posterImage, backgroundImage} = promoFilm;
 
   const history = useHistory();
+  useEffect(() => {
+    store.getState().currentGenre = ALL_GENRES;
+  });
 
   const filmsByGenre = getFilmsByGenre(currentGenre, films);
 
@@ -92,13 +97,11 @@ function WelcomeScreen(props: PropsFromRedux): JSX.Element {
         <section className="catalog">
           <h2 className="catalog__title visually-hidden">Catalog</h2>
 
-          <GenreList
-            films={films}
-          />
+          <GenreList />
 
           <FilmList
             filmsCount={filmsByGenre.length > filmNumberLimit ? filmNumberLimit : filmsByGenre.length}
-            listType={FilmListType.MainList}
+            films={filmsByGenre}
           />
 
           {filmsByGenre.length > filmNumberLimit ? <ShowMore /> : ''}

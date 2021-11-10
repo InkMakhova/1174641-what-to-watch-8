@@ -3,7 +3,7 @@ import Logo from '../logo/logo';
 import Footer from '../footer/footer';
 import Tabs from '../tabs/tabs';
 import FilmList from '../film-list/film-list';
-import {AppRoute, AuthorizationStatus, FilmListType, SIMILAR_FILM_NUMBER} from '../../const';
+import {AppRoute, AuthorizationStatus, SIMILAR_FILM_NUMBER} from '../../const';
 import {State} from '../../types/state';
 import {connect, ConnectedProps} from 'react-redux';
 import UserBlock from '../user-block/user-block';
@@ -16,10 +16,11 @@ type FilmParam = {
   id: string;
 }
 
-const mapStateToProps = ({currentFilm, comments, authorizationStatus}: State) => ({
+const mapStateToProps = ({currentFilm, comments, authorizationStatus, similarFilms}: State) => ({
   currentFilm,
   comments,
   authorizationStatus,
+  similarFilms,
 });
 
 const connector = connect(mapStateToProps);
@@ -27,7 +28,7 @@ const connector = connect(mapStateToProps);
 type PropsFromRedux = ConnectedProps<typeof connector>;
 
 function MoviePage(props: PropsFromRedux) : JSX.Element {
-  const {currentFilm, comments, authorizationStatus} = props;
+  const {currentFilm, comments, authorizationStatus, similarFilms} = props;
 
   const {id} = useParams<FilmParam>();
 
@@ -117,8 +118,8 @@ function MoviePage(props: PropsFromRedux) : JSX.Element {
           <h2 className="catalog__title">More like this</h2>
 
           <FilmList
-            listType={FilmListType.SimilarList}
             filmsCount={SIMILAR_FILM_NUMBER}
+            films={similarFilms}
           />
         </section>
 

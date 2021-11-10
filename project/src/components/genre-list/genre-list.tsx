@@ -7,12 +7,9 @@ import {Dispatch} from 'redux';
 import {connect, ConnectedProps} from 'react-redux';
 import {MouseEvent} from 'react';
 
-type GenreListProps = {
-  films: Film[];
-}
-
-const mapStateToProps = ({currentGenre}: State) => ({
-  currentGenre: currentGenre,
+const mapStateToProps = ({currentGenre, films}: State) => ({
+  currentGenre,
+  films,
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
@@ -25,10 +22,9 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
 const connector = connect(mapStateToProps, mapDispatchToProps);
 
 type PropsFromRedux = ConnectedProps<typeof connector>;
-type ConnectedComponentProps = PropsFromRedux & GenreListProps;
 
-function GenreList(props: ConnectedComponentProps): JSX.Element {
-  const {films, currentGenre, onChangeGenre} = props;
+function GenreList(props: PropsFromRedux): JSX.Element {
+  const {currentGenre, films, onChangeGenre} = props;
 
   const nonUniqueGenreList = films.map((film: Film) => film.genre);
   const uniqueGenreList = new Set(nonUniqueGenreList);

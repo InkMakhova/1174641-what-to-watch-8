@@ -73,7 +73,7 @@ export const checkAuthAction = (): ThunkActionResult =>
       });
   };
 
-export const loginAction = ({login: email, password: password}: AuthData): ThunkActionResult =>
+export const loginAction = ({login: email, password}: AuthData): ThunkActionResult =>
   async (dispatch, _getState, api) => {
     const {data} = await api.post<UserFromServer>(APIRoute.Login, {email, password});
     saveToken(data.token);
