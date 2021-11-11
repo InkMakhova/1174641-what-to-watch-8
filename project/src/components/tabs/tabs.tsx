@@ -1,7 +1,6 @@
-import {useEffect, useState} from 'react';
-import {Link} from 'react-router-dom';
+import React from 'react';
 import {Film} from '../../types/film';
-import {ACTIVE_TAB_CLASS_NAME, AppRoute, RatingLevel, TabType} from '../../const';
+import {ACTIVE_TAB_CLASS_NAME,/* AppRoute,*/ RatingLevel, TabType} from '../../const';
 import {formatDate, humanizeDate} from '../../util';
 import Review from '../review/review';
 import {FilmReview} from '../../types/film-review';
@@ -9,12 +8,15 @@ import {FilmReview} from '../../types/film-review';
 type TabsProps = {
   film: Film;
   comments: FilmReview[];
+  tab: string;
+  onOverviewClick: () => void;
+  onDetailsClick: () => void;
+  onReviewsClick: () => void;
 }
 
 function Tabs(props: TabsProps): JSX.Element {
-  const {film, comments} = props;
+  const {film, comments, tab, onOverviewClick, onDetailsClick, onReviewsClick} = props;
   const {
-    id,
     genre,
     released,
     rating,
@@ -23,18 +25,6 @@ function Tabs(props: TabsProps): JSX.Element {
     director,
     starring,
     runTime} = film;
-
-  const [activeTab, setActiveTab] = useState(TabType.Overview);
-
-  // const filmReviews = reviews.find((review) => review.filmId === film.id);
-  //
-  // let filmUserReviews: FilmReview[];
-  //
-  // if (filmReviews) {
-  //   if (filmReviews.reviews.length > 0) {
-  //     filmUserReviews = filmReviews.reviews;
-  //   }
-  // }
 
   function getRatingLevel(filmRating: number) {
     switch (true) {
@@ -51,8 +41,8 @@ function Tabs(props: TabsProps): JSX.Element {
     }
   }
 
-  function getActiveTabContent(tab: string) {
-    switch (tab) {
+  function getActiveTabContent(tabName: string) {
+    switch (tabName) {
       case TabType.Overview:
         return (
           <>
@@ -129,47 +119,40 @@ function Tabs(props: TabsProps): JSX.Element {
     }
   }
 
-  useEffect(() => {
-    setActiveTab(TabType.Overview);
-  }, [id]);
-
   return (
     <div className="film-card__desc">
       <nav className="film-nav film-card__nav">
         <ul className="film-nav__list">
-          <li className={`film-nav__item ${activeTab === TabType.Overview ? ACTIVE_TAB_CLASS_NAME : ''}`}>
-            <Link
-              to={`${AppRoute.Film}${id}`}
+          <li className={`film-nav__item ${tab === TabType.Overview ? ACTIVE_TAB_CLASS_NAME : ''}`}>
+            <a
               className="film-nav__link"
-              onClick={() => setActiveTab(TabType.Overview)}
+              onClick={onOverviewClick}
             >
               Overview
-            </Link>
+            </a>
           </li>
-          <li className={`film-nav__item ${activeTab === TabType.Details ? ACTIVE_TAB_CLASS_NAME : ''}`}>
-            <Link
-              to={`${AppRoute.Film}${id}`}
+          <li className={`film-nav__item ${tab === TabType.Details ? ACTIVE_TAB_CLASS_NAME : ''}`}>
+            <a
               className="film-nav__link"
-              onClick={() => setActiveTab(TabType.Details)}
+              onClick={onDetailsClick}
             >
               Details
-            </Link>
+            </a>
           </li>
-          <li className={`film-nav__item ${activeTab === TabType.Reviews ? ACTIVE_TAB_CLASS_NAME : ''}`}>
-            <Link
-              to={`${AppRoute.Film}${id}`}
+          <li className={`film-nav__item ${tab === TabType.Reviews ? ACTIVE_TAB_CLASS_NAME : ''}`}>
+            <a
               className="film-nav__link"
-              onClick={() => setActiveTab(TabType.Reviews)}
+              onClick={onReviewsClick}
             >
               Reviews
-            </Link>
+            </a>
           </li>
         </ul>
       </nav>
 
-      {getActiveTabContent(activeTab)}
+      {getActiveTabContent(tab)}
     </div>
   );
 }
 
-export default Tabs;
+export default React.memo(Tabs);

@@ -1,16 +1,17 @@
-import {Link, useParams, useHistory} from 'react-router-dom';
+import {/*Link, */useHistory, useParams} from 'react-router-dom';
 import Logo from '../logo/logo';
 import Footer from '../footer/footer';
 import Tabs from '../tabs/tabs';
 import FilmList from '../film-list/film-list';
-import {AppRoute, AuthorizationStatus, SIMILAR_FILM_NUMBER} from '../../const';
+import {AppRoute, AuthorizationStatus, SIMILAR_FILM_NUMBER, TabType} from '../../const';
 import {State} from '../../types/state';
 import {connect, ConnectedProps} from 'react-redux';
 import UserBlock from '../user-block/user-block';
 import {fetchCommentsAction, fetchFilmInfoAction, fetchSimilarFilmsAction} from '../../store/api-actions';
 import {ThunkAppDispatch} from '../../types/action';
 import {store} from '../../index';
-import {useEffect} from 'react';
+import React, {useEffect} from 'react';
+import AddReviewButton from '../add-review-button/add-review-button';
 
 type FilmParam = {
   id: string;
@@ -29,6 +30,23 @@ type PropsFromRedux = ConnectedProps<typeof connector>;
 
 function MoviePage(props: PropsFromRedux) : JSX.Element {
   const {currentFilm, comments, authorizationStatus, similarFilms} = props;
+
+  const [activeTab, setActiveTab] = React.useState(TabType.Overview);
+
+  const handleTabOverviewClick = React.useCallback(
+    () => setActiveTab(TabType.Overview),
+    [],
+  );
+
+  const handleTabDetailsClick = React.useCallback(
+    () => setActiveTab(TabType.Details),
+    [],
+  );
+
+  const handleTabReviewsClick = React.useCallback(
+    () => setActiveTab(TabType.Reviews),
+    [],
+  );
 
   const {id} = useParams<FilmParam>();
 
@@ -85,12 +103,7 @@ function MoviePage(props: PropsFromRedux) : JSX.Element {
                 </button>
                 {
                   authorizationStatus === AuthorizationStatus.Auth ?
-                    <Link
-                      className="btn film-card__button"
-                      to={`${AppRoute.Film}${id}${AppRoute.AddReview}`}
-                    >
-                      Add review
-                    </Link> : ''
+                    <AddReviewButton /> : ''
                 }
 
               </div>
@@ -106,8 +119,12 @@ function MoviePage(props: PropsFromRedux) : JSX.Element {
               />
             </div>
             <Tabs
+              tab={activeTab}
               film={currentFilm}
               comments={comments}
+              onOverviewClick={handleTabOverviewClick}
+              onDetailsClick={handleTabDetailsClick}
+              onReviewsClick={handleTabReviewsClick}
             />
           </div>
         </div>
@@ -130,4 +147,4 @@ function MoviePage(props: PropsFromRedux) : JSX.Element {
 }
 
 export {MoviePage};
-export default connector(MoviePage);
+export default React.memo(connector(MoviePage));
