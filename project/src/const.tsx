@@ -31,12 +31,6 @@ export const FILMS_NUMBER_STEP = 8;
 
 export const SIMILAR_FILM_NUMBER = 4;
 
-export enum FilmListType {
-  MainList = 'MainList',
-  SimilarList = 'SimilarList',
-  UserList = 'UserList',
-}
-
 export enum TabType {
   Overview = 'Overview',
   Details = 'Details',
