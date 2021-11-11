@@ -12,13 +12,13 @@ import {dropToken, saveToken} from '../services/token';
 import {
   APIRoute,
   AuthorizationStatus,
-  AppRoute} from '../const';
+  AppRoute,
+  initialUser} from '../const';
 import {Film} from '../types/film';
 import {AuthData} from '../types/auth-data';
 import {HttpCode} from '../services/api';
 import {UserFromServer} from '../types/user';
 import {adaptToClientFilm, adaptToClientUser} from '../services/adapter';
-import {initialUser} from './reducer';
 import {FilmReview} from '../types/film-review';
 import {ReviewData} from '../types/review-data';
 

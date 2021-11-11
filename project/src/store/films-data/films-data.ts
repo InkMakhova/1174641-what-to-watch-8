@@ -45,7 +45,7 @@ const filmsData = (state = initialState, action: Actions): FilmsData => {
       return {
         ...state,
         comments,
-      }
+      };
     }
     default:
       return state;

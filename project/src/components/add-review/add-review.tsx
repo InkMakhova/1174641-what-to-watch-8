@@ -13,7 +13,9 @@ type FilmParam = {
   id: string;
 }
 
-const mapStateToProps = ({currentFilm}: State) => ({currentFilm});
+const mapStateToProps = ({DATA}: State) => ({
+  currentFilm: DATA.currentFilm,
+});
 
 const connector = connect(mapStateToProps);
 

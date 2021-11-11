@@ -17,11 +17,11 @@ type FilmParam = {
   id: string;
 }
 
-const mapStateToProps = ({currentFilm, comments, authorizationStatus, similarFilms}: State) => ({
-  currentFilm,
-  comments,
-  authorizationStatus,
-  similarFilms,
+const mapStateToProps = ({DATA, USER}: State) => ({
+  currentFilm: DATA.currentFilm,
+  comments: DATA.comments,
+  authorizationStatus: USER.authorizationStatus,
+  similarFilms: DATA.similarFilms,
 });
 
 const connector = connect(mapStateToProps);

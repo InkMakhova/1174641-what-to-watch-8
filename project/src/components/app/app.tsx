@@ -14,10 +14,10 @@ import ReviewForm from '../review-form/review-form';
 import {State} from '../../types/state';
 import browserHistory from '../../browser-history';
 
-const mapStateToProps = ({promoFilm, films, isDataLoaded}: State) => ({
-  promoFilm,
-  films,
-  isDataLoaded,
+const mapStateToProps = ({DATA, USER}: State) => ({
+  promoFilm: DATA.promoFilm,
+  films: DATA.films,
+  isDataLoaded: USER.isDataLoaded,
 });
 
 const connector = connect(mapStateToProps);

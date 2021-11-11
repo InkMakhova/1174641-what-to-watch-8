@@ -5,11 +5,11 @@ import {State} from '../../types/state';
 import {changeGenre, resetFilmNumberLimit} from '../../store/action';
 import {Dispatch} from 'redux';
 import {connect, ConnectedProps} from 'react-redux';
-import {MouseEvent} from 'react';
+import React, {MouseEvent} from 'react';
 
-const mapStateToProps = ({currentGenre, films}: State) => ({
-  currentGenre,
-  films,
+const mapStateToProps = ({CATALOG, DATA}: State) => ({
+  currentGenre: CATALOG.currentGenre,
+  films: DATA.films,
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
@@ -51,4 +51,4 @@ function GenreList(props: PropsFromRedux): JSX.Element {
 }
 
 export {GenreList};
-export default connector(GenreList);
+export default React.memo(connector(GenreList));

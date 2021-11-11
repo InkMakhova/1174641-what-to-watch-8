@@ -9,14 +9,14 @@ import Footer from '../footer/footer';
 import {Film} from '../../types/film';
 import {ALL_GENRES, AppRoute} from '../../const';
 import {State} from '../../types/state';
-import {useEffect} from 'react';
+import React, {useEffect} from 'react';
 import {store} from '../../index';
 
-const mapStateToProps = ({currentGenre, promoFilm, films, filmNumberLimit}: State) => ({
-  currentGenre,
-  promoFilm,
-  films,
-  filmNumberLimit,
+const mapStateToProps = ({DATA, CATALOG}: State) => ({
+  currentGenre: CATALOG.currentGenre,
+  promoFilm: DATA.promoFilm,
+  films: DATA.films,
+  filmNumberLimit: CATALOG.filmNumberLimit,
 });
 
 const connector = connect(mapStateToProps);
@@ -36,7 +36,7 @@ function WelcomeScreen(props: PropsFromRedux): JSX.Element {
 
   const history = useHistory();
   useEffect(() => {
-    store.getState().currentGenre = ALL_GENRES;
+    store.getState().CATALOG.currentGenre = ALL_GENRES;
   });
 
   const filmsByGenre = getFilmsByGenre(currentGenre, films);

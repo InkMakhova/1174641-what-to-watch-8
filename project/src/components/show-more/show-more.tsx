@@ -3,9 +3,9 @@ import {Dispatch} from 'redux';
 import {changeFilmNumberLimit, changeLimitCounter} from '../../store/action';
 import {connect, ConnectedProps} from 'react-redux';
 
-const mapStateToProps = ({limitCounter, filmNumberLimit}: State) => ({
-  limitCounter,
-  filmNumberLimit,
+const mapStateToProps = ({CATALOG}: State) => ({
+  limitCounter: CATALOG.limitCounter,
+  filmNumberLimit: CATALOG.filmNumberLimit,
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({

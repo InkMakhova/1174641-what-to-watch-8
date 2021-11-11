@@ -1,6 +1,6 @@
 import {Actions, ActionType} from '../../types/action';
 import {UserProcess} from '../../types/state';
-import {AuthorizationStatus, initialUser} from "../../const";
+import {AuthorizationStatus, initialUser} from '../../const';
 
 const initialState: UserProcess = {
   authorizationStatus: AuthorizationStatus.Unknown,
@@ -21,15 +21,15 @@ const userProcess = (state = initialState, action: Actions): UserProcess => {
     case ActionType.RequireLogout: {
       return {
         ...state,
-        authorizationStatus: AuthorizationStatus.NoAuth
-      }
+        authorizationStatus: AuthorizationStatus.NoAuth,
+      };
     }
     case ActionType.ChangeUser: {
       const user = action.payload;
       return {
         ...state,
         user,
-      }
+      };
     }
     default:
       return state;

@@ -29,14 +29,14 @@ const catalogProcess = (state = initialState, action: Actions): CatalogProcess =
       return {
         ...state,
         filmNumberLimit,
-      }
+      };
     }
     case ActionType.ResetFilmNumberLimit: {
       return {
         ...state,
         limitCounter: initialState.limitCounter,
-        filmNumberLimit: initialState.filmNumberLimit
-      }
+        filmNumberLimit: initialState.filmNumberLimit,
+      };
     }
     default:
       return state;
