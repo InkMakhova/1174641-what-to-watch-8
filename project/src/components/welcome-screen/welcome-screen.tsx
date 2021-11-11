@@ -11,12 +11,14 @@ import {ALL_GENRES, AppRoute} from '../../const';
 import {State} from '../../types/state';
 import React, {useEffect} from 'react';
 import {store} from '../../index';
+import {getCurrentGenre, getFilmNumberLimit} from '../../store/catalog-process/selectors';
+import {getFilms, getPromoFilm} from '../../store/films-data/selectors';
 
-const mapStateToProps = ({DATA, CATALOG}: State) => ({
-  currentGenre: CATALOG.currentGenre,
-  promoFilm: DATA.promoFilm,
-  films: DATA.films,
-  filmNumberLimit: CATALOG.filmNumberLimit,
+const mapStateToProps = (state: State) => ({
+  currentGenre: getCurrentGenre(state),
+  promoFilm: getPromoFilm(state),
+  films: getFilms(state),
+  filmNumberLimit: getFilmNumberLimit(state),
 });
 
 const connector = connect(mapStateToProps);

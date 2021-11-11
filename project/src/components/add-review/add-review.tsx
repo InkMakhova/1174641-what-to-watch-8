@@ -8,13 +8,14 @@ import {useEffect} from 'react';
 import {store} from '../../index';
 import {ThunkAppDispatch} from '../../types/action';
 import {fetchFilmInfoAction} from '../../store/api-actions';
+import {getCurrentFilm} from '../../store/films-data/selectors';
 
 type FilmParam = {
   id: string;
 }
 
-const mapStateToProps = ({DATA}: State) => ({
-  currentFilm: DATA.currentFilm,
+const mapStateToProps = (state: State) => ({
+  currentFilm: getCurrentFilm(state),
 });
 
 const connector = connect(mapStateToProps);

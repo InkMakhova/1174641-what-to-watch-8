@@ -6,10 +6,12 @@ import {changeGenre, resetFilmNumberLimit} from '../../store/action';
 import {Dispatch} from 'redux';
 import {connect, ConnectedProps} from 'react-redux';
 import React, {MouseEvent} from 'react';
+import {getCurrentGenre} from '../../store/catalog-process/selectors';
+import {getFilms} from '../../store/films-data/selectors';
 
-const mapStateToProps = ({CATALOG, DATA}: State) => ({
-  currentGenre: CATALOG.currentGenre,
-  films: DATA.films,
+const mapStateToProps = (state: State) => ({
+  currentGenre: getCurrentGenre(state),
+  films: getFilms(state),
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({

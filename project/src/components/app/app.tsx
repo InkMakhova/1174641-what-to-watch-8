@@ -13,11 +13,13 @@ import PrivateRoute from '../private-route/private-route';
 import ReviewForm from '../review-form/review-form';
 import {State} from '../../types/state';
 import browserHistory from '../../browser-history';
+import {getFilms, getPromoFilm} from '../../store/films-data/selectors';
+import {getDataLoadedStatus} from '../../store/user-process/selectors';
 
-const mapStateToProps = ({DATA, USER}: State) => ({
-  promoFilm: DATA.promoFilm,
-  films: DATA.films,
-  isDataLoaded: USER.isDataLoaded,
+const mapStateToProps = (state: State) => ({
+  promoFilm: getPromoFilm(state),
+  films: getFilms(state),
+  isDataLoaded: getDataLoadedStatus(state),
 });
 
 const connector = connect(mapStateToProps);
@@ -60,7 +62,6 @@ function App(props : PropsFromRedux): JSX.Element {
         </PrivateRoute>
         <Route exact path={`${AppRoute.Film}:id`}>
           <MoviePage />
-          {/*//similarFilms={films}*/}
         </Route>
         <Route exact path={`${AppRoute.Player}:id`}>
           <Player

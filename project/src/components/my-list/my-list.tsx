@@ -3,7 +3,6 @@ import FilmList from '../film-list/film-list';
 import Footer from '../footer/footer';
 import {Film} from '../../types/film';
 import UserBlock from '../user-block/user-block';
-//import {FilmListType} from '../../const';
 
 type MyListProps = {
   myFilms: Film[];

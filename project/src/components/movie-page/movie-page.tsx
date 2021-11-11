@@ -12,16 +12,18 @@ import {ThunkAppDispatch} from '../../types/action';
 import {store} from '../../index';
 import React, {useEffect} from 'react';
 import AddReviewButton from '../add-review-button/add-review-button';
+import {getComments, getCurrentFilm, getSimilarFilms} from '../../store/films-data/selectors';
+import {getAuthorizationStatus} from '../../store/user-process/selectors';
 
 type FilmParam = {
   id: string;
 }
 
-const mapStateToProps = ({DATA, USER}: State) => ({
-  currentFilm: DATA.currentFilm,
-  comments: DATA.comments,
-  authorizationStatus: USER.authorizationStatus,
-  similarFilms: DATA.similarFilms,
+const mapStateToProps = (state: State) => ({
+  currentFilm: getCurrentFilm(state),
+  comments: getComments(state),
+  authorizationStatus: getAuthorizationStatus(state),
+  similarFilms: getSimilarFilms(state),
 });
 
 const connector = connect(mapStateToProps);

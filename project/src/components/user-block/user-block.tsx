@@ -4,10 +4,11 @@ import {State} from '../../types/state';
 import {Link} from 'react-router-dom';
 import {ThunkAppDispatch} from '../../types/action';
 import {logoutAction} from '../../store/api-actions';
+import {getAuthorizationStatus, getUser} from '../../store/user-process/selectors';
 
-const mapStateToProps = ({USER}: State) => ({
-  authorizationStatus: USER.authorizationStatus,
-  user: USER.user,
+const mapStateToProps = (state: State) => ({
+  authorizationStatus: getAuthorizationStatus(state),
+  user: getUser(state),
 });
 
 const mapDispatchToProps = (dispatch: ThunkAppDispatch) => ({
