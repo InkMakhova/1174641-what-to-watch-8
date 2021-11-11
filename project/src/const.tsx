@@ -23,6 +23,34 @@ export enum APIRoute {
   Comments = '/comments',
 }
 
+export const initialFilm = {
+  id: 0,
+  name:	'',
+  posterImage:	'',
+  previewImage:	'',
+  backgroundImage:	'',
+  backgroundColor:	'',
+  description: '',
+  rating:	0,
+  scoresCount:	0,
+  director:	'',
+  starring: [],
+  runTime:	0,
+  genre:	'',
+  released:	0,
+  isFavorite:	false,
+  videoLink:	'',
+  previewVideoLink:	'',
+};
+
+export const initialUser = {
+  id: 0,
+  email: '',
+  name: '',
+  avatarUrl: '',
+  token: '',
+};
+
 export const ALL_GENRES = 'All genres';
 
 export const ACTIVE_GENRE_CLASS_NAME = 'catalog__genres-item--active';
