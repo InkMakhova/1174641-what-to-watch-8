@@ -9,8 +9,7 @@ import Footer from '../footer/footer';
 import {Film} from '../../types/film';
 import {ALL_GENRES, AppRoute} from '../../const';
 import {State} from '../../types/state';
-import React, {useEffect} from 'react';
-import {store} from '../../index';
+import React from 'react';
 import {getCurrentGenre, getFilmNumberLimit} from '../../store/catalog-process/selectors';
 import {getFilms, getPromoFilm} from '../../store/films-data/selectors';
 
@@ -37,9 +36,6 @@ function WelcomeScreen(props: PropsFromRedux): JSX.Element {
   const {id, name, genre, released, posterImage, backgroundImage} = promoFilm;
 
   const history = useHistory();
-  useEffect(() => {
-    store.getState().CATALOG.currentGenre = ALL_GENRES;
-  });
 
   const filmsByGenre = getFilmsByGenre(currentGenre, films);
 

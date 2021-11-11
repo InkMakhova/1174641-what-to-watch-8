@@ -1,4 +1,4 @@
-import {/*Link, */useHistory, useParams} from 'react-router-dom';
+import {useHistory, useParams} from 'react-router-dom';
 import Logo from '../logo/logo';
 import Footer from '../footer/footer';
 import Tabs from '../tabs/tabs';

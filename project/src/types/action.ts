@@ -45,7 +45,6 @@ export type Actions =
   | ReturnType<typeof loadComments>
   | ReturnType<typeof changeGenre>
   | ReturnType<typeof changeLimitCounter>
-  | ReturnType<typeof changeLimitCounter>
   | ReturnType<typeof changeFilmNumberLimit>
   | ReturnType<typeof resetFilmNumberLimit>
   | ReturnType<typeof requireAuthorization>

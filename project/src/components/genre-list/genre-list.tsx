@@ -5,7 +5,7 @@ import {State} from '../../types/state';
 import {changeGenre, resetFilmNumberLimit} from '../../store/action';
 import {Dispatch} from 'redux';
 import {connect, ConnectedProps} from 'react-redux';
-import React, {MouseEvent} from 'react';
+import React from 'react';
 import {getCurrentGenre} from '../../store/catalog-process/selectors';
 import {getFilms} from '../../store/films-data/selectors';
 
@@ -41,7 +41,7 @@ function GenreList(props: PropsFromRedux): JSX.Element {
         >
           <Link to={AppRoute.Root}
             className='catalog__genres-link'
-            onClick={(evt: MouseEvent<HTMLAnchorElement>) => {
+            onClick={(evt) => {
               onChangeGenre(evt.currentTarget.innerText);
             }}
           >
