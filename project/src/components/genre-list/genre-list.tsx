@@ -1,32 +1,22 @@
 import {Link} from 'react-router-dom';
 import {Film} from '../../types/film';
 import {ACTIVE_GENRE_CLASS_NAME, ALL_GENRES, AppRoute} from '../../const';
-import {State} from '../../types/state';
 import {changeGenre, resetFilmNumberLimit} from '../../store/action';
-import {Dispatch} from 'redux';
-import {connect, ConnectedProps} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import React from 'react';
 import {getCurrentGenre} from '../../store/catalog-process/selectors';
 import {getFilms} from '../../store/films-data/selectors';
 
-const mapStateToProps = (state: State) => ({
-  currentGenre: getCurrentGenre(state),
-  films: getFilms(state),
-});
+function GenreList(): JSX.Element {
+  const currentGenre = useSelector(getCurrentGenre);
+  const films = useSelector(getFilms);
 
-const mapDispatchToProps = (dispatch: Dispatch) => ({
-  onChangeGenre(genre: string) {
+  const dispatch = useDispatch();
+
+  const onChangeGenre = (genre: string) => {
     dispatch(changeGenre(genre));
     dispatch(resetFilmNumberLimit());
-  },
-});
-
-const connector = connect(mapStateToProps, mapDispatchToProps);
-
-type PropsFromRedux = ConnectedProps<typeof connector>;
-
-function GenreList(props: PropsFromRedux): JSX.Element {
-  const {currentGenre, films, onChangeGenre} = props;
+  };
 
   const nonUniqueGenreList = films.map((film: Film) => film.genre);
   const uniqueGenreList = new Set(nonUniqueGenreList);
@@ -52,5 +42,4 @@ function GenreList(props: PropsFromRedux): JSX.Element {
   );
 }
 
-export {GenreList};
-export default React.memo(connector(GenreList));
+export default GenreList;

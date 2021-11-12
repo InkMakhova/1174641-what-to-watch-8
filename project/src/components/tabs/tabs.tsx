@@ -1,6 +1,6 @@
 import React from 'react';
 import {Film} from '../../types/film';
-import {ACTIVE_TAB_CLASS_NAME,/* AppRoute,*/ RatingLevel, TabType} from '../../const';
+import {ACTIVE_TAB_CLASS_NAME, RatingLevel, TabType} from '../../const';
 import {formatDate, humanizeDate} from '../../util';
 import Review from '../review/review';
 import {FilmReview} from '../../types/film-review';

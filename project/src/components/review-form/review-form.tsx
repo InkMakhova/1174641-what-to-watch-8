@@ -1,6 +1,5 @@
 import {useState, FormEvent, ChangeEvent} from 'react';
-import {ThunkAppDispatch} from '../../types/action';
-import {connect, ConnectedProps} from 'react-redux';
+import {useDispatch} from 'react-redux';
 import {ReviewData} from '../../types/review-data';
 import {reviewAction} from '../../store/api-actions';
 import {useParams} from 'react-router-dom';
@@ -11,23 +10,19 @@ type FilmParam = {
   id: string;
 }
 
-const mapDispatchToProps = (dispatch: ThunkAppDispatch) => ({
-  onSubmit(reviewData: ReviewData, errorHandler: (error: string) => void) {
-    dispatch(reviewAction(reviewData, errorHandler));
-  },
-});
-
-const connector = connect(null, mapDispatchToProps);
-
-type PropsFromRedux = ConnectedProps<typeof connector>;
-
-function ReviewForm({onSubmit}: PropsFromRedux): JSX.Element {
+function ReviewForm(): JSX.Element {
   const [userGrades, setUserGrades] = useState(0);
   const [userComment, setUserComment] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const [isSending, setIsSending] = useState(false);
 
   const {id} = useParams<FilmParam>();
+
+  const dispatch = useDispatch();
+
+  const onSubmit = (reviewData: ReviewData, errorHandler: (error: string) => void) => {
+    dispatch(reviewAction(reviewData, errorHandler));
+  };
 
   return (
     <div className="add-review">
@@ -97,5 +92,4 @@ function ReviewForm({onSubmit}: PropsFromRedux): JSX.Element {
   );
 }
 
-export {ReviewForm};
-export default connector(ReviewForm);
+export default ReviewForm;

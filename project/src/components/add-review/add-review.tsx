@@ -2,8 +2,7 @@ import {Link, useParams} from 'react-router-dom';
 import Logo from '../logo/logo';
 import ReviewForm from '../review-form/review-form';
 import UserBlock from '../user-block/user-block';
-import {State} from '../../types/state';
-import {connect, ConnectedProps} from 'react-redux';
+import {useSelector} from 'react-redux';
 import {useEffect} from 'react';
 import {store} from '../../index';
 import {ThunkAppDispatch} from '../../types/action';
@@ -14,15 +13,8 @@ type FilmParam = {
   id: string;
 }
 
-const mapStateToProps = (state: State) => ({
-  currentFilm: getCurrentFilm(state),
-});
-
-const connector = connect(mapStateToProps);
-
-type PropsFromRedux = ConnectedProps<typeof connector>;
-
-function AddReview({currentFilm} : PropsFromRedux) : JSX.Element {
+function AddReview() : JSX.Element {
+  const currentFilm = useSelector(getCurrentFilm);
   const {id} = useParams<FilmParam>();
 
   const titlePoster = `${currentFilm.name} poster`;
@@ -71,5 +63,4 @@ function AddReview({currentFilm} : PropsFromRedux) : JSX.Element {
   );
 }
 
-export {AddReview};
-export default connector(AddReview);
+export default AddReview;

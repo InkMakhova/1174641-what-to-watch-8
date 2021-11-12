@@ -4,8 +4,7 @@ import Footer from '../footer/footer';
 import Tabs from '../tabs/tabs';
 import FilmList from '../film-list/film-list';
 import {AppRoute, AuthorizationStatus, SIMILAR_FILM_NUMBER, TabType} from '../../const';
-import {State} from '../../types/state';
-import {connect, ConnectedProps} from 'react-redux';
+import {useSelector} from 'react-redux';
 import UserBlock from '../user-block/user-block';
 import {fetchCommentsAction, fetchFilmInfoAction, fetchSimilarFilmsAction} from '../../store/api-actions';
 import {ThunkAppDispatch} from '../../types/action';
@@ -19,19 +18,11 @@ type FilmParam = {
   id: string;
 }
 
-const mapStateToProps = (state: State) => ({
-  currentFilm: getCurrentFilm(state),
-  comments: getComments(state),
-  authorizationStatus: getAuthorizationStatus(state),
-  similarFilms: getSimilarFilms(state),
-});
-
-const connector = connect(mapStateToProps);
-
-type PropsFromRedux = ConnectedProps<typeof connector>;
-
-function MoviePage(props: PropsFromRedux) : JSX.Element {
-  const {currentFilm, comments, authorizationStatus, similarFilms} = props;
+function MoviePage() : JSX.Element {
+  const currentFilm = useSelector(getCurrentFilm);
+  const comments = useSelector(getComments);
+  const authorizationStatus = useSelector(getAuthorizationStatus);
+  const similarFilms = useSelector(getSimilarFilms);
 
   const [activeTab, setActiveTab] = React.useState(TabType.Overview);
 
@@ -148,5 +139,4 @@ function MoviePage(props: PropsFromRedux) : JSX.Element {
   );
 }
 
-export {MoviePage};
-export default React.memo(connector(MoviePage));
+export default MoviePage;

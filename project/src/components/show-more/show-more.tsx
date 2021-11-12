@@ -1,26 +1,14 @@
-import {State} from '../../types/state';
-import {Dispatch} from 'redux';
 import {changeFilmNumberLimit, changeLimitCounter} from '../../store/action';
-import {connect, ConnectedProps} from 'react-redux';
-import {getFilmNumberLimit, getLimitCounter} from '../../store/catalog-process/selectors';
+import {useDispatch} from 'react-redux';
 
-const mapStateToProps = (state: State) => ({
-  limitCounter: getLimitCounter(state),
-  filmNumberLimit: getFilmNumberLimit(state),
-});
+function ShowMore(): JSX.Element {
+  const dispatch = useDispatch();
 
-const mapDispatchToProps = (dispatch: Dispatch) => ({
-  onShowMore() {
+  const onShowMore = () => {
     dispatch(changeLimitCounter());
     dispatch(changeFilmNumberLimit());
-  },
-});
+  };
 
-const connector = connect(mapStateToProps, mapDispatchToProps);
-
-type PropsFromRedux = ConnectedProps<typeof connector>;
-
-function ShowMore({onShowMore}: PropsFromRedux): JSX.Element {
   return (
     <div className='catalog__more'>
       <button
@@ -36,5 +24,4 @@ function ShowMore({onShowMore}: PropsFromRedux): JSX.Element {
   );
 }
 
-export {ShowMore};
-export default connector(ShowMore);
+export default ShowMore;

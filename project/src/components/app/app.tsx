@@ -1,4 +1,4 @@
-import {connect, ConnectedProps} from 'react-redux';
+import {useSelector} from 'react-redux';
 import {Switch, Route, Router as BrowserRouter} from 'react-router-dom';
 import {AppRoute} from '../../const';
 import LoadingScreen from '../loading-screen/loading-screen';
@@ -11,23 +11,14 @@ import Player from '../player/player';
 import Page404 from '../page-404/page-404';
 import PrivateRoute from '../private-route/private-route';
 import ReviewForm from '../review-form/review-form';
-import {State} from '../../types/state';
 import browserHistory from '../../browser-history';
 import {getFilms, getPromoFilm} from '../../store/films-data/selectors';
 import {getDataLoadedStatus} from '../../store/user-process/selectors';
 
-const mapStateToProps = (state: State) => ({
-  promoFilm: getPromoFilm(state),
-  films: getFilms(state),
-  isDataLoaded: getDataLoadedStatus(state),
-});
-
-const connector = connect(mapStateToProps);
-
-type PropsFromRedux = ConnectedProps<typeof connector>;
-
-function App(props : PropsFromRedux): JSX.Element {
-  const {promoFilm, films, isDataLoaded} = props;
+function App(): JSX.Element {
+  const promoFilm = useSelector(getPromoFilm);
+  const films = useSelector(getFilms);
+  const isDataLoaded = useSelector(getDataLoadedStatus);
 
   if (!isDataLoaded) {
     return (
@@ -76,6 +67,5 @@ function App(props : PropsFromRedux): JSX.Element {
   );
 }
 
-export {App};
-export default connector(App);
+export default App;
 
