@@ -1,6 +1,10 @@
-import {Actions, ActionType} from '../../types/action';
 import {UserProcess} from '../../types/state';
 import {AuthorizationStatus, initialUser} from '../../const';
+import {createReducer} from '@reduxjs/toolkit';
+import {
+  changeUser,
+  requireAuthorization,
+  requireLogout} from '../action';
 
 const initialState: UserProcess = {
   authorizationStatus: AuthorizationStatus.Unknown,
@@ -8,32 +12,20 @@ const initialState: UserProcess = {
   isDataLoaded: false,
 };
 
-const userProcess = (state = initialState, action: Actions): UserProcess => {
-  switch (action.type) {
-    case ActionType.RequireAuthorization: {
+const userProcess = createReducer(initialState, (builder) => {
+  builder
+    .addCase(requireAuthorization, (state, action) => {
       const authorizationStatus = action.payload;
-      return {
-        ...state,
-        authorizationStatus,
-        isDataLoaded: true,
-      };
-    }
-    case ActionType.RequireLogout: {
-      return {
-        ...state,
-        authorizationStatus: AuthorizationStatus.NoAuth,
-      };
-    }
-    case ActionType.ChangeUser: {
+      state.authorizationStatus = authorizationStatus;
+      state.isDataLoaded = true;
+    })
+    .addCase(requireLogout, (state, action) => {
+      state.authorizationStatus = AuthorizationStatus.NoAuth;
+    })
+    .addCase(changeUser, (state, action) => {
       const user = action.payload;
-      return {
-        ...state,
-        user,
-      };
-    }
-    default:
-      return state;
-  }
-};
+      state.user = user;
+    });
+});
 
 export {userProcess};
