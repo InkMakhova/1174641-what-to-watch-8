@@ -1,6 +1,5 @@
 import {useHistory} from 'react-router-dom';
-//import {connect, ConnectedProps} from 'react-redux';
-import {useSelector/*, useDispatch*/} from 'react-redux';
+import {useSelector} from 'react-redux';
 import Logo from '../logo/logo';
 import UserBlock from '../user-block/user-block';
 import GenreList from '../genre-list/genre-list';
@@ -9,21 +8,9 @@ import ShowMore from '../show-more/show-more';
 import Footer from '../footer/footer';
 import {Film} from '../../types/film';
 import {ALL_GENRES, AppRoute} from '../../const';
-//import {State} from '../../types/state';
 import React from 'react';
 import {getCurrentGenre, getFilmNumberLimit} from '../../store/catalog-process/selectors';
 import {getFilms, getPromoFilm} from '../../store/films-data/selectors';
-
-// const mapStateToProps = (state: State) => ({
-//   currentGenre: getCurrentGenre(state),
-//   promoFilm: getPromoFilm(state),
-//   films: getFilms(state),
-//   filmNumberLimit: getFilmNumberLimit(state),
-// });
-
-//const connector = connect(mapStateToProps);
-
-//type PropsFromRedux = ConnectedProps<typeof connector>;
 
 function getFilmsByGenre(genre: string, films: Film[]) {
   if (genre === ALL_GENRES) {
@@ -32,8 +19,7 @@ function getFilmsByGenre(genre: string, films: Film[]) {
   return films.filter((film) => film.genre === genre);
 }
 
-function WelcomeScreen(/*props: PropsFromRedux*/): JSX.Element {
-  //const {promoFilm, currentGenre, films, filmNumberLimit} = props;
+function WelcomeScreen(): JSX.Element {
   const promoFilm = useSelector(getPromoFilm);
   const currentGenre = useSelector(getCurrentGenre);
   const films = useSelector(getFilms);
@@ -118,6 +104,4 @@ function WelcomeScreen(/*props: PropsFromRedux*/): JSX.Element {
   );
 }
 
-// export {WelcomeScreen};
-// export default connector(WelcomeScreen);
 export default WelcomeScreen;
