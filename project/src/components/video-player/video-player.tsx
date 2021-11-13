@@ -1,11 +1,15 @@
 import {useState, useRef, useEffect} from 'react';
 
 type VideoPlayerProps = {
-  videoPreviewLink: string;
-  posterImage: string;
+  link: string;
+  poster: string;
+  autoplay: boolean;
+  muted: boolean;
 }
 
-function VideoPlayer({videoPreviewLink, posterImage}: VideoPlayerProps): JSX.Element {
+function VideoPlayer(props: VideoPlayerProps): JSX.Element {
+  const {link, poster, autoplay, muted} = props;
+
   const [isLoading, setIsLoading] = useState(true);
 
   const videoRef = useRef<HTMLVideoElement | null>(null);
@@ -21,17 +25,18 @@ function VideoPlayer({videoPreviewLink, posterImage}: VideoPlayerProps): JSX.Ele
         videoRef.current = null;
       }
     };
-  }, [videoPreviewLink]);
+  }, [link]);
 
   return (
     <video
-      src={videoPreviewLink}
+      src={link}
       ref={videoRef}
       className="player__video"
       width="280"
       height="175"
-      autoPlay muted
-      poster={posterImage}
+      autoPlay={autoplay}
+      muted={muted}
+      poster={poster}
     >
     </video>
   );

@@ -12,11 +12,10 @@ import Page404 from '../page-404/page-404';
 import PrivateRoute from '../private-route/private-route';
 import ReviewForm from '../review-form/review-form';
 import browserHistory from '../../browser-history';
-import {getFilms, getPromoFilm} from '../../store/films-data/selectors';
+import {getFilms} from '../../store/films-data/selectors';
 import {getDataLoadedStatus} from '../../store/user-process/selectors';
 
 function App(): JSX.Element {
-  const promoFilm = useSelector(getPromoFilm);
   const films = useSelector(getFilms);
   const isDataLoaded = useSelector(getDataLoadedStatus);
 
@@ -55,9 +54,7 @@ function App(): JSX.Element {
           <MoviePage />
         </Route>
         <Route exact path={`${AppRoute.Player}:id`}>
-          <Player
-            film={promoFilm}
-          />
+          <Player />
         </Route>
         <Route exact path={AppRoute.Page404}>
           <Page404 />
