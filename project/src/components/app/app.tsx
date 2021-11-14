@@ -1,5 +1,5 @@
 import {useSelector} from 'react-redux';
-import {Switch, Route, Router as BrowserRouter} from 'react-router-dom';
+import {Route, Router as BrowserRouter, Switch} from 'react-router-dom';
 import {AppRoute} from '../../const';
 import LoadingScreen from '../loading-screen/loading-screen';
 import WelcomeScreen from '../welcome-screen/welcome-screen';
@@ -12,6 +12,7 @@ import Page404 from '../page-404/page-404';
 import PrivateRoute from '../private-route/private-route';
 import browserHistory from '../../browser-history';
 import {getDataLoadedStatus} from '../../store/user-process/selectors';
+import LoginRoute from '../login-route/login-route';
 
 function App(): JSX.Element {
   const isDataLoaded = useSelector(getDataLoadedStatus);
@@ -31,9 +32,12 @@ function App(): JSX.Element {
         <Route exact path='/review'>
           <AddReview />
         </Route>
-        <Route exact path={AppRoute.Login}>
-          <SignIn />
-        </Route>
+        <LoginRoute
+          exact
+          path={AppRoute.Login}
+          render={({history}) => <SignIn />}
+        >
+        </LoginRoute>
         <PrivateRoute
           exact
           path={AppRoute.MyList}
@@ -43,8 +47,7 @@ function App(): JSX.Element {
         <PrivateRoute
           exact
           path={`${AppRoute.Film}:id${AppRoute.AddReview}`}
-          render={() => (
-            <AddReview />)}
+          render={() => <AddReview />}
         >
         </PrivateRoute>
         <Route exact path={`${AppRoute.Film}:id`}>
