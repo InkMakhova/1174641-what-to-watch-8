@@ -32,6 +32,18 @@ function Player() : JSX.Element {
 
   useEffect(() => {
     if (videoRef.current !== null) {
+      videoRef.current.onloadstart = () => {
+        if (videoRef.current) {
+          videoRef.current.poster = '';
+          videoRef.current.style.background = 'black url(https://c.tenor.com/FX_9AcYeGokAAAAj/loader-loading.gif) center center no-repeat';
+        }
+      };
+      videoRef.current.oncanplay = () => {
+        if (videoRef.current) {
+          videoRef.current.style.background = '';
+          videoRef.current.poster = 'img/player-poster.jpg';
+        }
+      };
       videoRef.current.onloadeddata = () => {
         setIsLoading(false);
         if (videoRef.current) {
