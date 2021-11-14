@@ -82,3 +82,5 @@ export const loadFavoriteFilms = createAction(
     payload: favoriteFilms,
   }),
 );
+
+export const resetFavoriteFilms = createAction(ActionType.ResetFavoriteFilms);

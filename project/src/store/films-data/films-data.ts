@@ -1,11 +1,14 @@
 import {FilmsData} from '../../types/state';
 import {initialFilm} from '../../const';
 import {createReducer} from '@reduxjs/toolkit';
-import {loadComments,
+import {
+  loadComments,
   loadFilm,
   loadFilms,
   loadPromoFilm,
-  loadSimilarFilms} from '../action';
+  loadSimilarFilms,
+  resetFavoriteFilms
+} from '../action';
 
 const initialState: FilmsData = {
   films: [],
@@ -36,6 +39,10 @@ const filmsData = createReducer(initialState, (builder) => {
     .addCase(loadComments, (state, action) => {
       const comments = action.payload;
       state.comments = comments;
+    })
+    .addCase(resetFavoriteFilms, (state, action) => {
+      state.promoFilm.isFavorite = false;
+      state.currentFilm.isFavorite = false;
     });
 });
 

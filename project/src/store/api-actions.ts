@@ -8,7 +8,9 @@ import {
   requireLogout,
   redirectToRoute,
   loadSimilarFilms,
-  loadComments, loadFavoriteFilms
+  loadComments,
+  loadFavoriteFilms,
+  resetFavoriteFilms
 } from './action';
 import {dropToken, saveToken} from '../services/token';
 import {
@@ -99,6 +101,7 @@ export const logoutAction = (): ThunkActionResult =>
     dropToken();
     dispatch(requireLogout());
     dispatch(changeUser(initialUser));
+    dispatch(resetFavoriteFilms());
   };
 
 export const reviewAction = ({filmId, rating, comment}: ReviewData, errorHandler: (error: string) => void): ThunkActionResult =>

@@ -23,7 +23,7 @@ export enum ActionType {
   ChangeUser = 'user/user',
   RedirectToRoute = 'filmList/redirectToRoute',
   LoadFavoriteFilms = 'user/loadFavoriteFilms',
-
+  ResetFavoriteFilms = 'user/resetFavoriteFilms',
 }
 
 export type ThunkActionResult<R = Promise<void>> = ThunkAction<R, State, AxiosInstance, Action>;

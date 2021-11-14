@@ -5,7 +5,8 @@ import {
   changeUser,
   loadFavoriteFilms,
   requireAuthorization,
-  requireLogout
+  requireLogout,
+  resetFavoriteFilms
 } from '../action';
 
 const initialState: UserProcess = {
@@ -32,6 +33,9 @@ const userProcess = createReducer(initialState, (builder) => {
     .addCase(loadFavoriteFilms, (state, action) => {
       const favoriteFilms = action.payload;
       state.favoriteFilms = favoriteFilms;
+    })
+    .addCase(resetFavoriteFilms, (state, action) => {
+      state.favoriteFilms = initialState.favoriteFilms;
     });
 });
 
