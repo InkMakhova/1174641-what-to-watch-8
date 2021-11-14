@@ -43,6 +43,13 @@ function Tabs(props: TabsProps): JSX.Element {
     }
   }
 
+  function humanizeRunTime(filmDuration: number): string {
+    const hours = Math.trunc(filmDuration/60) > 0 ? Math.trunc(filmDuration/60) : '';
+    const minutes = filmDuration%60;
+
+    return `${hours}h ${minutes}m`;
+  }
+
   function getActiveTabContent(tabName: string) {
     switch (tabName) {
       case TabType.Overview:
@@ -87,7 +94,7 @@ function Tabs(props: TabsProps): JSX.Element {
             <div className="film-card__text-col">
               <p className="film-card__details-item">
                 <strong className="film-card__details-name">Run Time</strong>
-                <span className="film-card__details-value">{runTime}</span>
+                <span className="film-card__details-value">{humanizeRunTime(runTime)}</span>
               </p>
               <p className="film-card__details-item">
                 <strong className="film-card__details-name">Genre</strong>
