@@ -51,6 +51,7 @@ function ReviewForm(): JSX.Element {
               {grades.map((grade) => (
                 <>
                   <input
+                    key={grade}
                     className="rating__input"
                     id={`star-${grade}`}
                     type="radio"
