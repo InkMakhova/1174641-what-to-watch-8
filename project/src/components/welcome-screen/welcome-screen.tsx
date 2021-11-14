@@ -12,7 +12,12 @@ import {getCurrentGenre, getFilmNumberLimit} from '../../store/catalog-process/s
 import {getFilms, getPromoFilm} from '../../store/films-data/selectors';
 import PlayerButton from '../player-button/player-button';
 import MyListButton from '../my-list-button/my-list-button';
-import {changeGenre, resetFilmNumberLimit} from '../../store/action';
+import {
+  changeGenre,
+  loadPromoFilm,
+  resetFavoriteFilms,
+  resetFilmNumberLimit} from '../../store/action';
+import {getFavoriteFilms} from '../../store/user-process/selectors';
 
 function getFilmsByGenre(genre: string, films: Film[]) {
   if (genre === ALL_GENRES) {
@@ -26,16 +31,22 @@ function WelcomeScreen(): JSX.Element {
   const currentGenre = useSelector(getCurrentGenre);
   const films = useSelector(getFilms);
   const filmNumberLimit = useSelector(getFilmNumberLimit);
+  const favoriteFilms = useSelector(getFavoriteFilms);
+
+  const dispatch = useDispatch();
 
   const {id, name, genre, released, posterImage, backgroundImage} = promoFilm;
 
   const filmsByGenre = getFilmsByGenre(currentGenre, films);
 
-  const dispatch = useDispatch();
-
   useEffect(() => {
     dispatch(changeGenre(ALL_GENRES));
     dispatch(resetFilmNumberLimit());
+    dispatch(resetFavoriteFilms);
+    const matchedPromoFilm = favoriteFilms.find((film: Film) => film.id === promoFilm.id);
+    if (matchedPromoFilm) {
+      dispatch(loadPromoFilm(matchedPromoFilm));
+    }
   }, []);
 
   return (
