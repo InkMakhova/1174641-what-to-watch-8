@@ -12,11 +12,9 @@ import Page404 from '../page-404/page-404';
 import PrivateRoute from '../private-route/private-route';
 import ReviewForm from '../review-form/review-form';
 import browserHistory from '../../browser-history';
-import {getFilms} from '../../store/films-data/selectors';
 import {getDataLoadedStatus} from '../../store/user-process/selectors';
 
 function App(): JSX.Element {
-  const films = useSelector(getFilms);
   const isDataLoaded = useSelector(getDataLoadedStatus);
 
   if (!isDataLoaded) {
@@ -40,7 +38,7 @@ function App(): JSX.Element {
         <PrivateRoute
           exact
           path={AppRoute.MyList}
-          render={({history}) => <MyList myFilms={films}/>}
+          render={({history}) => <MyList />}
         >
         </PrivateRoute>
         <PrivateRoute

@@ -1,14 +1,20 @@
 import Logo from '../logo/logo';
 import FilmList from '../film-list/film-list';
 import Footer from '../footer/footer';
-import {Film} from '../../types/film';
 import UserBlock from '../user-block/user-block';
+import {useEffect} from 'react';
+import {store} from '../../index';
+import {fetchFavoriteFilms} from '../../store/api-actions';
+import {useSelector} from 'react-redux';
+import {getFavoriteFilms} from '../../store/user-process/selectors';
 
-type MyListProps = {
-  myFilms: Film[];
-}
+function MyList() : JSX.Element {
+  useEffect(() => {
+    store.dispatch(fetchFavoriteFilms());
+  }, []);
 
-function MyList({myFilms} : MyListProps) : JSX.Element {
+  const favoriteFilms = useSelector(getFavoriteFilms);
+
   return (
     <div className="user-page">
       <header className="page-header user-page__head">
@@ -24,9 +30,8 @@ function MyList({myFilms} : MyListProps) : JSX.Element {
       <section className="catalog">
         <h2 className="catalog__title visually-hidden">Catalog</h2>
         <FilmList
-          filmsCount={9}
-          films={myFilms}
-          //listType={FilmListType.UserList}
+          filmsCount={favoriteFilms.length}
+          films={favoriteFilms}
         />
       </section>
 

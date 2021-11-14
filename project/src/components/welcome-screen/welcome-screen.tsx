@@ -11,6 +11,7 @@ import React from 'react';
 import {getCurrentGenre, getFilmNumberLimit} from '../../store/catalog-process/selectors';
 import {getFilms, getPromoFilm} from '../../store/films-data/selectors';
 import PlayerButton from '../player-button/player-button';
+import MyListButton from '../my-list-button/my-list-button';
 
 function getFilmsByGenre(genre: string, films: Film[]) {
   if (genre === ALL_GENRES) {
@@ -65,12 +66,8 @@ function WelcomeScreen(): JSX.Element {
                   id={String(id)}
                 />
 
-                <button className="btn btn--list film-card__button" type="button">
-                  <svg viewBox="0 0 19 20" width="19" height="20">
-                    <use xlinkHref="#add"></use>
-                  </svg>
-                  <span>My list</span>
-                </button>
+                <MyListButton film={promoFilm}/>
+
               </div>
             </div>
           </div>
