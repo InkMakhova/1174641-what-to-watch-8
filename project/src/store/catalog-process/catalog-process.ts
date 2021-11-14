@@ -1,5 +1,5 @@
 import {CatalogProcess} from '../../types/state';
-import {ALL_GENRES, FILMS_NUMBER_STEP} from '../../const';
+import {ALL_GENRES, FILMS_NUMBER_STEP, LIMIT_COUNTER_START} from '../../const';
 import {createReducer} from '@reduxjs/toolkit';
 import {
   changeFilmNumberLimit,
@@ -9,7 +9,7 @@ import {
 
 const initialState: CatalogProcess = {
   currentGenre: ALL_GENRES,
-  limitCounter: 1,
+  limitCounter: LIMIT_COUNTER_START,
   filmNumberLimit: FILMS_NUMBER_STEP,
 };
 
