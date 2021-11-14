@@ -1,34 +1,22 @@
 import {Link} from 'react-router-dom';
 import {Film} from '../../types/film';
 import {ACTIVE_GENRE_CLASS_NAME, ALL_GENRES, AppRoute} from '../../const';
-import {State} from '../../types/state';
 import {changeGenre, resetFilmNumberLimit} from '../../store/action';
-import {Dispatch} from 'redux';
-import {connect, ConnectedProps} from 'react-redux';
-import {MouseEvent} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
+import React from 'react';
+import {getCurrentGenre} from '../../store/catalog-process/selectors';
+import {getFilms} from '../../store/films-data/selectors';
 
-type GenreListProps = {
-  films: Film[];
-}
+function GenreList(): JSX.Element {
+  const currentGenre = useSelector(getCurrentGenre);
+  const films = useSelector(getFilms);
 
-const mapStateToProps = ({currentGenre}: State) => ({
-  currentGenre: currentGenre,
-});
+  const dispatch = useDispatch();
 
-const mapDispatchToProps = (dispatch: Dispatch) => ({
-  onChangeGenre(genre: string) {
+  const onChangeGenre = (genre: string) => {
     dispatch(changeGenre(genre));
     dispatch(resetFilmNumberLimit());
-  },
-});
-
-const connector = connect(mapStateToProps, mapDispatchToProps);
-
-type PropsFromRedux = ConnectedProps<typeof connector>;
-type ConnectedComponentProps = PropsFromRedux & GenreListProps;
-
-function GenreList(props: ConnectedComponentProps): JSX.Element {
-  const {films, currentGenre, onChangeGenre} = props;
+  };
 
   const nonUniqueGenreList = films.map((film: Film) => film.genre);
   const uniqueGenreList = new Set(nonUniqueGenreList);
@@ -43,7 +31,7 @@ function GenreList(props: ConnectedComponentProps): JSX.Element {
         >
           <Link to={AppRoute.Root}
             className='catalog__genres-link'
-            onClick={(evt: MouseEvent<HTMLAnchorElement>) => {
+            onClick={(evt) => {
               onChangeGenre(evt.currentTarget.innerText);
             }}
           >
@@ -54,5 +42,4 @@ function GenreList(props: ConnectedComponentProps): JSX.Element {
   );
 }
 
-export {GenreList};
-export default connector(GenreList);
+export default GenreList;

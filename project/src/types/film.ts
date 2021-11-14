@@ -37,3 +37,8 @@ export type FilmFromServer = {
   released: number,
   'is_favorite'?: boolean,
 }
+
+export type FavoriteFilm = {
+  filmId: number,
+  status: boolean,
+}

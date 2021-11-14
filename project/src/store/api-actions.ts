@@ -6,21 +6,24 @@ import {
   loadFilm,
   requireAuthorization,
   requireLogout,
-  redirectToRoute, loadSimilarFilms, loadComments
+  redirectToRoute,
+  loadSimilarFilms,
+  loadComments, loadFavoriteFilms
 } from './action';
 import {dropToken, saveToken} from '../services/token';
 import {
   APIRoute,
   AuthorizationStatus,
-  AppRoute} from '../const';
-import {Film} from '../types/film';
+  AppRoute,
+  initialUser} from '../const';
+import {FavoriteFilm, Film} from '../types/film';
 import {AuthData} from '../types/auth-data';
 import {HttpCode} from '../services/api';
 import {UserFromServer} from '../types/user';
 import {adaptToClientFilm, adaptToClientUser} from '../services/adapter';
-import {initialUser} from './reducer';
 import {FilmReview} from '../types/film-review';
 import {ReviewData} from '../types/review-data';
+import {store} from '../index';
 
 export const fetchPromoFilmAction = (): ThunkActionResult =>
   async (dispatch, _getState, api): Promise<void> => {
@@ -60,6 +63,13 @@ export const fetchCommentsAction = (filmId: number): ThunkActionResult =>
     dispatch(loadComments(data));
   };
 
+export const fetchFavoriteFilms = (): ThunkActionResult =>
+  async (dispatch, _getState, api): Promise<void> => {
+    const {data} = await api.get<Film[]>(APIRoute.Favorite);
+    const adaptedData = data.map((film) => adaptToClientFilm(film));
+    dispatch(loadFavoriteFilms(adaptedData));
+  };
+
 export const checkAuthAction = (): ThunkActionResult =>
   async (dispatch, _getState, api) => {
     await api.get(APIRoute.Login)
@@ -73,7 +83,7 @@ export const checkAuthAction = (): ThunkActionResult =>
       });
   };
 
-export const loginAction = ({login: email, password: password}: AuthData): ThunkActionResult =>
+export const loginAction = ({login: email, password}: AuthData): ThunkActionResult =>
   async (dispatch, _getState, api) => {
     const {data} = await api.post<UserFromServer>(APIRoute.Login, {email, password});
     saveToken(data.token);
@@ -103,5 +113,22 @@ export const reviewAction = ({filmId, rating, comment}: ReviewData, errorHandler
       })
       .catch(() => {
         errorHandler('Error sending review. Try again later.');
+      });
+  };
+
+export const favoriteAction = (favorite: FavoriteFilm): ThunkActionResult =>
+  async (dispatch, _getState, api) => {
+    await api.post(`${APIRoute.Favorite}/${favorite.filmId}/${favorite.status === true ? 1 : 0}`)
+      .then(({status, data}) => {
+        if (status && status !== HttpCode.Unauthorized) {
+          const adaptedData = adaptToClientFilm(data);
+          if (adaptedData.id === store.getState().DATA.promoFilm.id) {
+            dispatch(loadPromoFilm(adaptedData));
+            return;
+          }
+          dispatch(loadFilm(adaptedData));
+          return;
+        }
+        dispatch(redirectToRoute(AppRoute.Login));
       });
   };
