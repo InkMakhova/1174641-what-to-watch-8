@@ -27,18 +27,8 @@ function MoviePage() : JSX.Element {
 
   const [activeTab, setActiveTab] = React.useState(TabType.Overview);
 
-  const handleTabOverviewClick = React.useCallback(
-    () => setActiveTab(TabType.Overview),
-    [],
-  );
-
-  const handleTabDetailsClick = React.useCallback(
-    () => setActiveTab(TabType.Details),
-    [],
-  );
-
-  const handleTabReviewsClick = React.useCallback(
-    () => setActiveTab(TabType.Reviews),
+  const handleTabClick = React.useCallback(
+    (tab): void => setActiveTab(tab),
     [],
   );
 
@@ -48,6 +38,7 @@ function MoviePage() : JSX.Element {
     store.dispatch(fetchFilmInfoAction(Number(id)));
     store.dispatch(fetchSimilarFilmsAction(Number(id)));
     store.dispatch(fetchCommentsAction(Number(id)));
+    setActiveTab(TabType.Overview);
   }, [id]);
 
   return (
@@ -105,9 +96,7 @@ function MoviePage() : JSX.Element {
               tab={activeTab}
               film={currentFilm}
               comments={comments}
-              onOverviewClick={handleTabOverviewClick}
-              onDetailsClick={handleTabDetailsClick}
-              onReviewsClick={handleTabReviewsClick}
+              onClick={handleTabClick}
             />
           </div>
         </div>

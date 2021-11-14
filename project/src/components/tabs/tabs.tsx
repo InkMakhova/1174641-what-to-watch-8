@@ -1,6 +1,10 @@
 import React from 'react';
 import {Film} from '../../types/film';
-import {ACTIVE_TAB_CLASS_NAME, RatingLevel, TabType} from '../../const';
+import {
+  ACTIVE_TAB_CLASS_NAME,
+  RatingLevel,
+  RatingLevelGrades,
+  TabType} from '../../const';
 import {formatDate, humanizeDate} from '../../util';
 import Review from '../review/review';
 import {FilmReview} from '../../types/film-review';
@@ -9,13 +13,11 @@ type TabsProps = {
   film: Film;
   comments: FilmReview[];
   tab: string;
-  onOverviewClick: () => void;
-  onDetailsClick: () => void;
-  onReviewsClick: () => void;
+  onClick: (tab: string) => void;
 }
 
 function Tabs(props: TabsProps): JSX.Element {
-  const {film, comments, tab, onOverviewClick, onDetailsClick, onReviewsClick} = props;
+  const {film, comments, tab, onClick} = props;
   const {
     genre,
     released,
@@ -28,15 +30,15 @@ function Tabs(props: TabsProps): JSX.Element {
 
   function getRatingLevel(filmRating: number) {
     switch (true) {
-      case filmRating >= 0 && filmRating < 3:
+      case filmRating >= RatingLevelGrades.Bad && filmRating < RatingLevelGrades.Normal:
         return RatingLevel.Bad;
-      case filmRating >= 3 && filmRating < 5:
+      case filmRating >= RatingLevelGrades.Normal && filmRating < RatingLevelGrades.Good:
         return RatingLevel.Normal;
-      case filmRating >= 5 && filmRating < 8:
+      case filmRating >= RatingLevelGrades.Good && filmRating < RatingLevelGrades.VeryGood:
         return RatingLevel.Good;
-      case filmRating >= 8 && filmRating < 10:
+      case filmRating >= RatingLevelGrades.VeryGood && filmRating < RatingLevelGrades.Awesome:
         return RatingLevel.VeryGood;
-      case filmRating === 10:
+      case filmRating === RatingLevelGrades.Awesome:
         return RatingLevel.Awesome;
     }
   }
@@ -123,26 +125,35 @@ function Tabs(props: TabsProps): JSX.Element {
     <div className="film-card__desc">
       <nav className="film-nav film-card__nav">
         <ul className="film-nav__list">
-          <li className={`film-nav__item ${tab === TabType.Overview ? ACTIVE_TAB_CLASS_NAME : ''}`}>
+          <li
+            className={`film-nav__item ${tab === TabType.Overview ? ACTIVE_TAB_CLASS_NAME : ''}`}
+            key={TabType.Overview}
+          >
             <a
               className="film-nav__link"
-              onClick={onOverviewClick}
+              onClick={() => onClick(TabType.Overview)}
             >
               Overview
             </a>
           </li>
-          <li className={`film-nav__item ${tab === TabType.Details ? ACTIVE_TAB_CLASS_NAME : ''}`}>
+          <li
+            className={`film-nav__item ${tab === TabType.Details ? ACTIVE_TAB_CLASS_NAME : ''}`}
+            key={TabType.Details}
+          >
             <a
               className="film-nav__link"
-              onClick={onDetailsClick}
+              onClick={() => onClick(TabType.Details)}
             >
               Details
             </a>
           </li>
-          <li className={`film-nav__item ${tab === TabType.Reviews ? ACTIVE_TAB_CLASS_NAME : ''}`}>
+          <li
+            className={`film-nav__item ${tab === TabType.Reviews ? ACTIVE_TAB_CLASS_NAME : ''}`}
+            key={TabType.Reviews}
+          >
             <a
               className="film-nav__link"
-              onClick={onReviewsClick}
+              onClick={() => onClick(TabType.Reviews)}
             >
               Reviews
             </a>
