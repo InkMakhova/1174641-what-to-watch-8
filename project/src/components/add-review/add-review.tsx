@@ -15,6 +15,7 @@ type FilmParam = {
 
 function AddReview() : JSX.Element {
   const currentFilm = useSelector(getCurrentFilm);
+
   const {id} = useParams<FilmParam>();
 
   const titlePoster = `${currentFilm.name} poster`;

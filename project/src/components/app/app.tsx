@@ -10,7 +10,6 @@ import AddReview from '../add-review/add-review';
 import Player from '../player/player';
 import Page404 from '../page-404/page-404';
 import PrivateRoute from '../private-route/private-route';
-import ReviewForm from '../review-form/review-form';
 import browserHistory from '../../browser-history';
 import {getDataLoadedStatus} from '../../store/user-process/selectors';
 
@@ -30,7 +29,7 @@ function App(): JSX.Element {
           <WelcomeScreen />
         </Route>
         <Route exact path='/review'>
-          <ReviewForm />
+          <AddReview />
         </Route>
         <Route exact path={AppRoute.Login}>
           <SignIn />

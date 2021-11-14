@@ -3,6 +3,7 @@ import {useDispatch} from 'react-redux';
 import {ReviewData} from '../../types/review-data';
 import {reviewAction} from '../../store/api-actions';
 import {useParams} from 'react-router-dom';
+import {BACKGROUND_REVIEW_FORM} from '../../const';
 
 const grades = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
@@ -67,7 +68,10 @@ function ReviewForm(): JSX.Element {
             </div>
           </div>
 
-          <div className="add-review__text">
+          <div
+            className="add-review__text"
+            style={{background: BACKGROUND_REVIEW_FORM}}
+          >
             <textarea
               className="add-review__textarea"
               name="review-text" id="review-text"

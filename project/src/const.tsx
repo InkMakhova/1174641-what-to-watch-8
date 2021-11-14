@@ -56,6 +56,8 @@ export const ALL_GENRES = 'All genres';
 
 export const ACTIVE_GENRE_CLASS_NAME = 'catalog__genres-item--active';
 
+export const LIMIT_COUNTER_START = 1;
+
 export const FILMS_NUMBER_STEP = 8;
 
 export const SIMILAR_FILM_NUMBER = 4;
@@ -67,6 +69,14 @@ export enum TabType {
 }
 
 export const ACTIVE_TAB_CLASS_NAME = 'film-nav__item--active';
+
+export enum RatingLevelGrades {
+  Bad = 0,
+  Normal = 3,
+  Good = 5,
+  VeryGood = 8,
+  Awesome = 10,
+}
 
 export enum RatingLevel {
   Bad = 'Bad',
@@ -90,3 +100,5 @@ export const monthNames = [
   'November',
   'December',
 ];
+
+export const BACKGROUND_REVIEW_FORM = 'rgba(255, 255, 255, 0.4)';
