@@ -53,7 +53,7 @@ function App(): JSX.Element {
         <Route exact path={`${AppRoute.Player}:id`}>
           <Player />
         </Route>
-        <Route exact path={AppRoute.Page404}>
+        <Route >
           <Page404 />
         </Route>
       </Switch>
