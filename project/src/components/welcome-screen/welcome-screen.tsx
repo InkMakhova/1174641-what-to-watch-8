@@ -1,4 +1,4 @@
-import {useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import Logo from '../logo/logo';
 import UserBlock from '../user-block/user-block';
 import GenreList from '../genre-list/genre-list';
@@ -7,11 +7,12 @@ import ShowMore from '../show-more/show-more';
 import Footer from '../footer/footer';
 import {Film} from '../../types/film';
 import {ALL_GENRES} from '../../const';
-import React from 'react';
+import React, {useEffect} from 'react';
 import {getCurrentGenre, getFilmNumberLimit} from '../../store/catalog-process/selectors';
 import {getFilms, getPromoFilm} from '../../store/films-data/selectors';
 import PlayerButton from '../player-button/player-button';
 import MyListButton from '../my-list-button/my-list-button';
+import {changeGenre, resetFilmNumberLimit} from '../../store/action';
 
 function getFilmsByGenre(genre: string, films: Film[]) {
   if (genre === ALL_GENRES) {
@@ -29,6 +30,13 @@ function WelcomeScreen(): JSX.Element {
   const {id, name, genre, released, posterImage, backgroundImage} = promoFilm;
 
   const filmsByGenre = getFilmsByGenre(currentGenre, films);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(changeGenre(ALL_GENRES));
+    dispatch(resetFilmNumberLimit());
+  }, []);
 
   return (
     <>
