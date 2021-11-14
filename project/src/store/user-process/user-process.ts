@@ -3,13 +3,16 @@ import {AuthorizationStatus, initialUser} from '../../const';
 import {createReducer} from '@reduxjs/toolkit';
 import {
   changeUser,
+  loadFavoriteFilms,
   requireAuthorization,
-  requireLogout} from '../action';
+  requireLogout
+} from '../action';
 
 const initialState: UserProcess = {
   authorizationStatus: AuthorizationStatus.Unknown,
   user: initialUser,
   isDataLoaded: false,
+  favoriteFilms: [],
 };
 
 const userProcess = createReducer(initialState, (builder) => {
@@ -25,6 +28,10 @@ const userProcess = createReducer(initialState, (builder) => {
     .addCase(changeUser, (state, action) => {
       const user = action.payload;
       state.user = user;
+    })
+    .addCase(loadFavoriteFilms, (state, action) => {
+      const favoriteFilms = action.payload;
+      state.favoriteFilms = favoriteFilms;
     });
 });
 

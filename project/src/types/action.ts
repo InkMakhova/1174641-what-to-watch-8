@@ -22,6 +22,8 @@ export enum ActionType {
   RequireLogout = 'user/requireLogout',
   ChangeUser = 'user/user',
   RedirectToRoute = 'filmList/redirectToRoute',
+  LoadFavoriteFilms = 'user/loadFavoriteFilms',
+
 }
 
 export type ThunkActionResult<R = Promise<void>> = ThunkAction<R, State, AxiosInstance, Action>;

@@ -75,3 +75,10 @@ export const redirectToRoute = createAction(
     payload: url,
   }),
 );
+
+export const loadFavoriteFilms = createAction(
+  ActionType.LoadFavoriteFilms,
+  (favoriteFilms: Film[]) => ({
+    payload: favoriteFilms,
+  }),
+);

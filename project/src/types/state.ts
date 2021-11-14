@@ -22,6 +22,7 @@ export type UserProcess = {
   authorizationStatus: AuthorizationStatus;
   user: User;
   isDataLoaded: boolean;
+  favoriteFilms: Film[];
 }
 
 export type State = RootState;
