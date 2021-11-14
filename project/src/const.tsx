@@ -21,6 +21,7 @@ export enum APIRoute {
   Logout = '/logout',
   Similar = '/similar',
   Comments = '/comments',
+  Favorite = '/favorite',
 }
 
 export const initialFilm = {
