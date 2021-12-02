@@ -136,6 +136,7 @@ function Tabs(props: TabsProps): JSX.Element {
             className={`film-nav__item ${tab === TabType.Overview ? ACTIVE_TAB_CLASS_NAME : ''}`}
             key={TabType.Overview}
           >
+            {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
             <a
               className="film-nav__link"
               onClick={() => onClick(TabType.Overview)}
@@ -147,6 +148,7 @@ function Tabs(props: TabsProps): JSX.Element {
             className={`film-nav__item ${tab === TabType.Details ? ACTIVE_TAB_CLASS_NAME : ''}`}
             key={TabType.Details}
           >
+            {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
             <a
               className="film-nav__link"
               onClick={() => onClick(TabType.Details)}
@@ -158,6 +160,7 @@ function Tabs(props: TabsProps): JSX.Element {
             className={`film-nav__item ${tab === TabType.Reviews ? ACTIVE_TAB_CLASS_NAME : ''}`}
             key={TabType.Reviews}
           >
+            {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
             <a
               className="film-nav__link"
               onClick={() => onClick(TabType.Reviews)}

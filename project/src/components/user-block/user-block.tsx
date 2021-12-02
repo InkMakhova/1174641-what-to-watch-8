@@ -30,6 +30,7 @@ function UserBlock(): JSX.Element {
       </li>
       <li className="user-block__item">
         {(authorizationStatus === AuthorizationStatus.Auth) ?
+          /* eslint-disable-next-line jsx-a11y/anchor-is-valid */
           <a
             className="user-block__link"
             onClick={() => onLogout()}

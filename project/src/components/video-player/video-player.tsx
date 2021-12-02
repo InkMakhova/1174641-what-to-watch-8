@@ -25,7 +25,7 @@ function VideoPlayer(props: VideoPlayerProps): JSX.Element {
         videoRef.current = null;
       }
     };
-  }, [link]);
+  }, [link, isLoading]);
 
   return (
     <video

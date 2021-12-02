@@ -45,6 +45,7 @@ function AddReview() : JSX.Element {
                 <Link to={filmPage} className="breadcrumbs__link">{currentFilm.name}</Link>
               </li>
               <li className="breadcrumbs__item">
+                {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
                 <a className="breadcrumbs__link">Add review</a>
               </li>
             </ul>

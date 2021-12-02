@@ -47,7 +47,7 @@ function WelcomeScreen(): JSX.Element {
     if (matchedPromoFilm) {
       dispatch(loadPromoFilm(matchedPromoFilm));
     }
-  }, []);
+  }, [dispatch, favoriteFilms, promoFilm]);
 
   return (
     <>
