@@ -4,7 +4,7 @@ Watch new movies in the best quality. Leave reviews, rate and choose only the be
 Demo: <a href="https://what-to-watch-inkmakhova.vercel.app/">https://what-to-watch-inkmakhova.vercel.app/</a>
 
 ### Description
-+ The application consists of several pages: Home, user authorization page, favorite movies list page, movie page, add review page, movie player page;
++ The application consists of several pages: Home, User Authorization, Favorite Movies List, Movie, Add Review, Player;
 + Pages of the list of favorite films and adding a review are available only to authorized users (authorization can be performed by specifying an email of the correct format and name);
 
 ### Used technologies and libraries
@@ -20,5 +20,5 @@ Demo: <a href="https://what-to-watch-inkmakhova.vercel.app/">https://what-to-wat
 Демо: <a href="https://what-to-watch-inkmakhova.vercel.app/">https://what-to-watch-inkmakhova.vercel.app/</a>
 
 ### Описание 
-+ Приложение состоит из нескольких страниц: Главная, страница авторизации пользователя, страница списка любимых фильмов, страница фильма, страница добавления отзыва, страница проигрывателя фильмов;
++ Приложение состоит из нескольких страниц: Главная, Страница Авторизации, Страница Списка Любимых Фильмов, Страница Фильма, Страница Добавления Отзыва, Страница Проигрывателя Фильмов;
 + Страницы списка любимых фильмов и добавления отзыва доступны только авторизованным пользователям (авторизацию можно выполнить, указав email корректного формата и имя);
