@@ -1,9 +1,9 @@
-# The Project "What To Watch"
+# Project "What To Watch"
 Watch new movies in the best quality. Leave reviews, rate and choose only the best from the world of big cinema.
 
 Demo: <a href="https://what-to-watch-inkmakhova.vercel.app/">https://what-to-watch-inkmakhova.vercel.app/</a>
 
-###Description
+### Description
 + The application consists of several pages: Home, user authorization page, favorite movies list page, movie page, add review page, movie player page;
 + Pages of the list of favorite films and adding a review are available only to authorized users (authorization can be performed by specifying an email of the correct format and name);
 
