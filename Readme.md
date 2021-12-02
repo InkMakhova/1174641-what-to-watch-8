@@ -1,4 +1,6 @@
-# The Project "What To Watch" is subscription streaming service. Watch new items absolutely free and in the best quality. Leave reviews, rate and choose only the best from the world of big cinema.
+# The Project "What To Watch"
+Watch new movies in the best quality. Leave reviews, rate and choose only the best from the world of big cinema.
+
 Demo: <a href="https://what-to-watch-inkmakhova.vercel.app/">https://what-to-watch-inkmakhova.vercel.app/</a>
 
 ###Description
@@ -12,7 +14,9 @@ Demo: <a href="https://what-to-watch-inkmakhova.vercel.app/">https://what-to-wat
 + Redux
 + Axios
 
-# «Что посмотреть» — онлайн кинотеатр нового поколения. Смотрите новинки абсолютно бесплатно и в лучшем качестве. Оставляйте отзывы, ставьте оценки и выбирайте только лучшее из мира большого кино.
+# «Что посмотреть» 
+Смотрите новинки кино в лучшем качестве. Оставляйте отзывы, ставьте оценки и выбирайте только лучшее из мира большого кино.
+
 Демо: <a href="https://what-to-watch-inkmakhova.vercel.app/">https://what-to-watch-inkmakhova.vercel.app/</a>
 
 ### Описание 
