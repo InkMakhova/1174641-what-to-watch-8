@@ -30,10 +30,5 @@ function LoginRoute(props: PrivateRouteProps): JSX.Element {
     />
   );
 }
-// (
-//   authorizationStatus === AuthorizationStatus.Auth
-//     ? render(routeProps)
-//     : <Redirect to={AppRoute.Login} />
-// )
 
 export default LoginRoute;
